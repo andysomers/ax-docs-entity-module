@@ -1,5 +1,5 @@
 [[appendix-entity-configuration-attributes]]
-=== EntityConfiguration attributes
+= EntityConfiguration attributes
 The following table lists commonly present attributes on an `EntityConfiguration`.
 
 |===
@@ -41,7 +41,7 @@ Will only be used if there is no `OptionGenerator.class` or `OptionIterableBuild
 |===
 
 [[appendix-entity-property-descriptor-attributes]]
-=== EntityPropertyDescriptor attributes
+= EntityPropertyDescriptor attributes
 The following table lists commonly present attributes on an `EntityPropertyDescriptor`.
 
 |===
