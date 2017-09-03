@@ -4,5 +4,15 @@
         "moduleUrl": "https://foreach.atlassian.net/wiki/display/AX/EntityModule",
         "javadoc": "http://across.foreach.be/docs/across-standard-modules/EntityModule/2.1.0.RELEASE/javadoc",
         "javadocProcessors": "http://across.foreach.be/docs/across-standard-modules/EntityModule/2.1.0.RELEASE/javadoc/com/foreach/across/modules/entity/views/processors"
+    },
+    "plugins": [ "versions", "edit-link"],
+    "pluginsConfig": {
+        "versions": {
+            "type": "branches"
+        },
+        "edit-link": {
+            "base": "https://github.com/arne-vandamme/ax-docs-entity-module/edit/master/",
+            "label": "Edit This Page"
+        }
     }
 }
