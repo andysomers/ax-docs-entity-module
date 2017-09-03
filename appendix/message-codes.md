@@ -18,8 +18,8 @@ Unless custom `EntityMessageCodeResolver` instances are being used, message code
 | *EntityPrefix*.adminMenu.general| Name of the _General_ tab.  Usually the first tab that is also opened when creating a new entity.|
 | *EntityPrefix*.adminMenu.*associationName*| Name of the tab for that association. <br>Example: _UserModule.entities.group.adminMenu.user.groups_|
 | *EntityPrefix*.actions.*actionName*| Name of the actions, usually the buttons or links on a page.  Often you just want to replace these on a global level. <br>Example: _EntityModule.entities.actions.save_, _UserModule.entities.group.actions.cancel_|
-| *EntityPrefix*.pageTitle.*pageName*| Title of the page.  Supports message code parameters. <br>Example: _UserModule.entities.user.pageTitle.update=Updating {1}: {2}_|
-| *EntityPrefix*.pageTitle.*pageName*.subText| Additional text that should be added as sub text (small) to the page header. Supports message code parameters.|
+| *EntityPrefix*.pageTitle.*pageName*| Title of the page.  Supports [message code parameters](#message-code-parameters). <br>Example: _UserModule.entities.user.pageTitle.update=Updating {1}: {2}_|
+| *EntityPrefix*.pageTitle.*pageName*.subText| Additional text that should be added as sub text (small) to the page header. Supports [message code parameters](#message-code-parameters).|
 | *EntityPrefix*.feedback.*feedbackType*| Feedback message shown for the given feedback type. <br>Example: _UserModule.entities.user.feedback.validationErrors_|
 | *EntityPrefix*.sortableTable.*| Sortable table results and pager text keys. <br>Example: _UserModule.entities.user.sortableTable.resultsFound_|
 | *EntityPrefix*.delete.*| Delete view specific messages.<br>Example: _UserModule.entities.user.delete.confirmation_|
