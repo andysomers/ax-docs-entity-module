@@ -1,0 +1,26 @@
+== Integration with other modules
+
+[[integration:adminwebmodule]]
+==== AdminWebModule
+
+If the AdminWebModule is present entity management controllers will be created for all registered entity configurations.
+If you want to avoid the automatic registration of entity management controllers for a particular entity type, you should set the `EntityConfiguration` as `hidden`.
+This will effectively disable the default entity controllers for that type, and hide the existence of the entity type from the administration interface.
+
+You can also hide one or more associations.
+By default an association will not be shown if one of the participating entities is hidden.
+If you specify the `hidden` property of an `EntityAssociation` explicitly, that value will take precedence of the entity configurations.
+This way it is possible to generate management pages for associated entities, but not for the main entity type.
+
+==== AdminWebModule: developer tools
+When integrated with AdminWebModule and development mode is active, an entity registry browser will be added to the _Developer tools_ section of the administration ui.
+The browser allows you to inspect the registered entities along with their views, associations and properties.
+
+
+=== Auditable
+If _SpringSecurityModule_ is present, {module-name} adapts the default views for `Auditable` entities.
+The *createdBy* and *lastModifiedBy* properties are rendered using an `AuditablePrincipalPropertyViewElementBuilder` which uses the `SecurityPrincipalLabelResolverStrategy` to generate a pretty label for a principal (eg. full name instead of username).
+The default properties are removed from default views, but an aggregated property *created* and *lastModified* is added.
+The aggregated properties combine both the timestamp and the principal in a single property using the `AuditablePropertyViewElementBuilder`.
+
+See the `AuditableEntityUiConfiguration` for full customization.

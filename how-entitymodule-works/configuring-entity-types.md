@@ -1,0 +1,142 @@
+== Configuring entity types
+
+[[builders]]
+=== Using builders
+Entities are usually automatically added to the `EntityRegistry` through the use of one or more `EntityRegistrar` beans.
+The registrars will apply a default configuration, usually consisting of all properties, associations and views.
+
+Customizing the `EntityRegistry` is done by implementing one or more `EntityConfigurer` beans in your modules.
+These receive an `EntitiesConfigurationBuilder` that effectively allows you to customize all registered `EntityConfiguration` instances.
+Multiple `EntityConfigurer` beans can modify the same `EntityConfiguration`, the order in which they are applied will determine the last value if they modify the same properties.
+
+Investigate the javadoc of the `EntitiesConfigurationBuilder` and child builders to discover all possible configuration options.
+
+[source,java,indent=0]
+[subs="verbatim,quotes,attributes"]
+----
+@AcrossDepends(required = "EntityModule")
+@Configuration
+public class UserEntitiesConfiguration implements EntityConfigurer
+{
+	@Override
+	public void configure( EntitiesConfigurationBuilder configuration ) {
+		// By default permissions cannot be managed through the user interface
+		configuration.withType( Permission.class ).hide();
+	}
+}
+----
+
+=== Configuring properties
+Properties for an entity can be configured through the builders as well.
+New properties can be added or the default properties can modified.
+How properties are configured determines how they will be rendered on the generated forms.
+
+hidden:: A hidden property will by default not be returned when requesting all properties from an `EntityPropertyRegistry`.
+You can still get this property directly however, the `hidden` state means a property will not advertise itself, you must know of its existence.
+
+readable:: Any readable property can be rendered in all views.
+This state means that a form control can always be generated, even though it might very well be readonly if the property is not `writable`.
+
+writable::  A writable property can be rendered in form views.
+In case a property is writable but not readable, the property can only be included in forms but not in other views.
+
+WARNING: The `hidden` state has no correlation with a hidden form control.
+Setting a property to be rendered as a hidden form control can only be done through configuring the right `ViewElement` information for that property.
+
+==== Configuring a label
+An entity with a corresponding `EntityConfiguration` always has a label, this is a textual representation of the entity in for example lists.
+This could be the *name* or the * title* property for example.
+By default the label corresponds to a custom generated property *#label* that defaults to calling `toString()` on the entity.
+
+You can configure the label using the `label()` method on a `PropertyDescriptorBuilder`.
+This is equivalent to calling `property("#label")`.
+If you want to use another property as the base for label generation, you can configure this on the `EntityConfigurationBuilder` by calling `label("propertyName")`.
+This will copy all settings from the source property to the *#label* property, but keep in mind it still is a separate property that can be customized.
+
+[source,java,indent=0]
+[subs="verbatim,quotes,attributes"]
+----
+@Override
+public void configure( EntitiesConfigurationBuilder entities ) {
+    // Configure the username to be used as label for a User entity
+    entities.withType( User.class ).label( "username" );
+
+    // Configure the group name to be used as base label, but modify the value fetcher so
+    // the label is prefixed with Group
+    entities.withType( Group.class )
+            .properties( props -> props.label( "name" ).spelValueFetcher( "'Group: ' + name" ) );
+}
+----
+
+If you do not wish to use the *#label* property at all as default entity label, you can customize the `Printer` used for label generation by modifying the `EntityModel`.
+
+NOTE: As *#label* is a generated property, sorting is not enabled by default.
+If you configure the label using an existing property, the sortable attribute will be copied as well and sorting on label will be possible.
+
+
+=== Creating an EntityConfiguration manually
+
+==== Attributes to configure
+
+Some attributes are mandatory, others are optional but will often impact how much functionality is available out of the box.
+You can configure any attribute you like, see the section on <<automatic-attributes,automatic registration>> for a list of common attributes provided by other registrars.
+
+==== EntityQueryExecutor
+
+In order for generated views to work automatically, an `EntityConfiguration` should have an `EntityQueryExecutor` attribute.
+The `EntityQueryExecutor` is a generic interface that supports the simple `EntityQuery` abstraction for fetching entities from the backing repository.
+Default implementations exist for `JpaSpecificationExecutor` and `QueryDslPredicateExecutor`.
+
+==== Registering an ENUM as entity
+
+EntityModule supports registration of enums as `EntityConfiguration`.
+When creating an `EntityConfiguration` for an enum, a basic `EntityModule` will get built and all enum properties will be configurable.
+
+Registering enums as entity is mainly useful for configuration of display properties in related entity views.
+
+.Example registering an enum as entity
+[source,java,indent=0]
+[subs="verbatim,quotes,attributes"]
+----
+// Enum class
+public enum Country
+{
+    BE( "Belgium" ),
+    UK( "United Kingdom" ),
+    NL( "Netherlands" );
+
+    private String name;
+
+    Country( String name ) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+}
+
+// Create the EntityConfiguration
+@Override
+public void configure( EntitiesConfigurationBuilder entities ) {
+    entities.create().entityType( Country.class, true ).label( "name" );
+}
+----
+
+=== Automatic registration of entity types
+
+==== Spring Data repositories
+
+===== JPA repositories
+DOCUMENTATION TODO:
+
+ * Embedded ID
+ * register conversion service
+ * add json serializer
+
+[[automatic-attributes]]
+===== Automatic attribute registration
+See the appendix for an <<appendix-entity-configuration-attributes,overview of commonly registered attributes>>.
+
+
+

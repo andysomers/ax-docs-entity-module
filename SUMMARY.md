@@ -11,8 +11,11 @@
     * [Form view](how-entitymodule-works/entity-views/form-view.md)
     * [Generic view](how-entitymodule-works/entity-views/generic-view.md)
     * [JQuery extensions](how-entitymodule-works/entity-views/adminwebmodule-jquery-plugins.md)
-* [Entity associations](entity-associations.md)
+    * [Linking to entity views](how-entitymodule-works/entity-views/linking-to-entity-views.md)
+  * [Entity associations](entity-associations.md)
+  * [Integration with other modules](how-entitymodule-works/integration-with-other-modules.md)
 * [Customizing entity views](customizing-entity-views.md)
+* [Configuring entity types](how-entitymodule-works/configuring-entity-types.md)
 * [EntityQuery infrastructure](entityquery-infrastructure.md)
 
 ## Appendix
