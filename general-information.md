@@ -1,35 +1,28 @@
-== General information
+# General information
 
-=== Artifact
-[source,xml,indent=0]
-[subs="verbatim,quotes,attributes"]
-----
-	<dependencies>
-		<dependency>
-			<groupId>com.foreach.across.modules</groupId>
-			<artifactId>{module-artifact}</artifactId>
-			<version>{module-version}</version>
-		</dependency>
-	</dependencies>
-----
+## Artifact {#module-artifact}
 
-=== Module dependencies
+```xml
+    <dependencies>
+        <dependency>
+            <groupId>com.foreach.across.modules</groupId>
+            <artifactId>entity-module</artifactId>
+            <version>{{ book.moduleVersion }}</version>
+        </dependency>
+    </dependencies>
+```
 
-.Module dependencies
-|===
-|Module |Type |Description
+## Module dependencies {#module-dependencies}
 
-|<<integration:adminwebmodule>>
-|optional
-|Enables auto generated forms for managing the registered entities.
-|===
+| Module | Type | Description |
+| --- | --- | --- |
+| AdminWebModule | optional | Enables auto generated forms for managing the registered entities. |
 
-=== Module settings
+## Module settings {#module-settings}
 
-|===
-|Property |Description |Default
+| Property | Description | Default |
+| --- | --- | --- |
+| entityModule.entityValidator.registerForMvc | Should the entity Validator instance be registered as the default validator for MVC databinding. | true |
 
-|entityModule.entityValidator.registerForMvc
-|Should the entity Validator instance be registered as the default validator for MVC databinding.
-|true
-|===
+
+
