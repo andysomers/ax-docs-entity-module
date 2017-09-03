@@ -180,39 +180,20 @@ To create a custom conversion you can simply register a `Converter` that convert
 
 The following table shows how EQL arguments will be converted to their respective `EQType`:
 
-[cols=2, options="header"]
-|===
-|Argument value
-|EQType
+|Argument value|EQType|
+|---|---|
+|name| `EQValue`: name|
+|'name'| `EQString`: name|
+|(name, 'name')| `EQGroup`<br> - `EQValue`: name <br> - `EQString`: name|
+|users(name, 'name')| `EQFunction`: users <br>[arguments] <br>   - `EQValue`: name <br>   - `EQString`: name|
 
-|name
-| `EQValue`: name
-
-|'name'
-| `EQString`: name
-
-|(name, 'name')
-| `EQGroup`
- - `EQValue`: name +
- - `EQString`: name
-
-|users(name, 'name')
-| `EQFunction`: users +
-   [arguments] +
-   - `EQValue`: name +
-   - `EQString`: name
-
-|===
-
-By default {module-name} registers id-based lookups for all its registered entities.
+By default EntityModule registers id-based lookups for all its registered entities.
 So supposing you have an entity `User` with id 1 and you want to query on a property *creator* of type `User`, the following query would work: `creator = 1`.
 
 When building the `EntityQuery` the value 1 would be used as the id to find the `User` instance, and the latter would be used as the argument for the final query.
 If we want to replace the custom behavior and allow the user to be specified by username instead, we could easily register a custom converter.
 
-[source,java,indent=0]
-[subs="verbatim,quotes,attributes"]
-----
+```java
 public class EQValueToUserConverter implements Converter<EQValue, User>
 {
     ...
@@ -226,12 +207,13 @@ public class EQValueToUserConverter implements Converter<EQValue, User>
 ...
 
 converterRegistry.addConverter( new EQValueToUserConverter(...) );
-----
+```
 
 This would allow us to execute the queries like `creator = john` or  `creator in (john, jane)`.
 Any type-specific converter will take precedence over the defaults.
 
-NOTE: The example above would only work if the username can never contain any whitespace.
+> **NOTE**
+The example above would only work if the username can never contain any whitespace.
 If it can, then we would have to specify it as a String instead and write a converter for `EQString` instead of `EQValue`.
 
 
@@ -246,10 +228,8 @@ If you want to use a function to compare a property that has a `Date` type, your
 
 A single handler can support multiple functions and requested return types.
 
-.Simple EntityQuery function that always returns the String hello
-[source,java,indent=0]
-[subs="verbatim,quotes,attributes"]
-----
+**Simple EntityQuery function that always returns the String hello**
+```java
 /**
  * Simple EntityQuery function that always returns the String 'hello'.
  * Example eql: name = hello() or name in (hello(), 'goodbye')
@@ -270,19 +250,17 @@ public class HelloFunction implements EntityQueryFunctionHandler
 		return "hello";
 	}
 }
-----
+```
 
 ### Custom EQL translation
 You can register an `EntityQueryConditionTranslator` attribute on any entity property.
 If a translator instance is present, it will be called during the parsing phase of an EQL into an `EntityQuery`.
 
-.Example registering a translator
-[source,java,indent=0]
-[subs="verbatim,quotes,attributes"]
-----
+**Example registering a translator**
+```java
 configuration
  .withType( Group.class )
  .properties(
     props -> props.property( "name" ).attribute( EntityQueryConditionTranslator.class, EntityQueryConditionTranslator.ignoreCase() )
  )
-----
+```
