@@ -192,7 +192,7 @@ The following table shows how EQL arguments will be converted to their respectiv
 | `EQString`: name
 
 |(name, 'name')
-| `EQGroup` <br>
+| `EQGroup` 
  - `EQValue`: name +
  - `EQString`: name
 
