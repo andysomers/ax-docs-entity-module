@@ -5,7 +5,9 @@
 * [Introduction](README.md)
 * [What's new in this version](whats-new-in-this-version.md)
 * [General information](general-information.md)
-  * 
+  * [Artifact](/general-information.md#module-artifact)
+  * [Module dependencies](/general-information.md#module-dependencies)
+  * [Module settings](/general-information.md#module-settings)
 * [How EntityModule works](how-entitymodule-works.md)
   * [Entity views](how-entitymodule-works/entity-views.md)
     * [List view](how-entitymodule-works/entity-views/list-view.md)
