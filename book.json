@@ -1,6 +1,6 @@
 {
     variables: {
-        moduleVersion: "2.1.0.RELEASE"
+        moduleVersion: "2.1.0.RELEASE",
         moduleUrl: "https://foreach.atlassian.net/wiki/display/AX/EntityModule",
         javadoc: "http://across.foreach.be/docs/across-standard-modules/EntityModule/2.1.0.RELEASE/javadoc",
         javadocProcessors: "http://across.foreach.be/docs/across-standard-modules/EntityModule/2.1.0.RELEASE/javadoc/com/foreach/across/modules/entity/views/processors"
