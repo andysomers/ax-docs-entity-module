@@ -254,7 +254,7 @@ public class HelloFunction implements EntityQueryFunctionHandler
 
 ### Custom EQL translation
 You can register an `EntityQueryConditionTranslator` attribute on any entity property.
-If a translator instance is present, it will be called during the parsing phase of an EQL into an `EntityQuery`.
+If a translator instance is present, it will be called during the parsing phase of an EQL statement into an `EntityQuery`.
 
 **Example registering a translator**
 ```java
