@@ -113,7 +113,7 @@ Usable on collection property types.
 |`CONTAINS`  | argument should be present in the collection
 |`NOT CONTAINS` | argument should not be present in the collection
 
-#### IS EMPTY/IS NOT EMPTY
+#### IS NULL/IS NOT NULL
 Usable on single value properties only.
 These operators to not take any additional arguments.
 
