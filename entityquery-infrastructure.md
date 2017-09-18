@@ -114,13 +114,21 @@ Usable on collection property types.
 |`NOT CONTAINS` | argument should not be present in the collection
 
 #### IS EMPTY/IS NOT EMPTY
-Usable on most property types, although the behaviour is slightly different for collection types.
+Usable on single value properties only.
 These operators to not take any additional arguments.
 
 |Operator|Description|
 |---|---|
-|`IS EMPTY`  | property should be unset (null) or have no members (in case of collection) 
-|`IS NOT EMPTY` | property should be set (not null) or have at least one member (in case of collection)
+|`IS NULL`  | property should not be set (null) 
+|`IS NOT NULL` | property should be set (not null) 
+
+#### IS EMPTY/IS NOT EMPTY
+Preferred for collection type properties, altough usually will work as an alternative for `IS NULL`/`IS NOT NULL` on single value properties.  These operators to not take any additional arguments.
+
+|Operator|Description|
+|---|---|
+|`IS EMPTY`  | property should not have any members (in case of collection) or should not be set (if single value property)
+|`IS NOT EMPTY` | property should have at least one member (in case of collection) or should be set (if single value property)
 
 ### Default EQL functions
 
