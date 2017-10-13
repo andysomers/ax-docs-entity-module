@@ -29,5 +29,5 @@
 
 ## How-tos
 
-
+* [Customizing the listview of an entity](how-tos/adding-a-custom-action-to-a-listview.md)
 
