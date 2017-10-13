@@ -29,5 +29,6 @@
 
 ## How-tos
 
+* [Adding a custom property to an entity](how-tos/adding-a-custom-property-to-an-entity.md)
 * [Customizing the listview of an entity](how-tos/adding-a-custom-action-to-a-listview.md)
 
