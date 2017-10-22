@@ -1,17 +1,24 @@
 # What's new in this version?
 
+## 2.2.0-SNAPSHOT
+
+* it is now possible to configure default view element modes \(eg. control or readonly rendering\) on an `EntityConfiguration`
+  * these will be used in all cases where no specific configuration has been configured on property level
+
 ## 2.1.0.RELEASE
+
 * improve the ability to [customize page titles and layouts](/customizing-entity-views.md)
-  * all entity views now set a page (sub) title if a matching message code returns a non-empty string
-   * there is a default title for all views except the list view
+  * all entity views now set a page \(sub\) title if a matching message code returns a non-empty string
+    * there is a default title for all views except the list view
   * list views now also publish an `EntityPageStructureRenderedEvent`
 * select option controls now support `SelectFormElementConfiguration` to render more advanced bootstrap-select controls
 * added _ILIKE_ operator to the [EntityQuery Language](/entityquery-infrastructure.md) for case insensitive matching on String columns
   * an `EntityQueryConditionTranslator` attribute can be registered on entity properties to ensure regular equal and like lookups are always converted to the case insensitive equivalent
 
 ## 2.0.0.RELEASE
-This release has a lot of breaking changes compared with the previous release.
-The code has been heavily rewritten and optimized.
+
+This release has a lot of breaking changes compared with the previous release.  
+The code has been heavily rewritten and optimized.  
 The public API modified accordingly with a focus on simplification and future extensibility.
 
 * requires Across 2.0.0+
@@ -25,7 +32,7 @@ The public API modified accordingly with a focus on simplification and future ex
 * EntityModule now supports deleting of entities
 * the `EntityModel` of an `EntityConfiguration` can now be customized using the `EntityConfigurer` builders
 * extension of the [EntityQuery infrastructure](/entityquery-infrastructure.md)
-  * addition of the EntityQuery Language (EQL) providing SQL-like syntax for building an `EntityQuery`
+  * addition of the EntityQuery Language \(EQL\) providing SQL-like syntax for building an `EntityQuery`
   * provide a default EQL-based filter for list views
 * addition of the entity browser in the _Developer tools_ section of AdminWebModule
   * allows seeing all registered entities along with their attributes, properties, views and associations
@@ -34,6 +41,9 @@ The public API modified accordingly with a focus on simplification and future ex
 * a list view can now have a default predicate assigned using an EQL statement
   * this can be used to ensure a list result always has a default filter applied
 * default entity views support transactions, allowing multiple processors to modify data in a single transaction
-  * transactions are enabled by default for state modifying HTTP methods of all form views (create, update, delete and custom form views)
-* option controls (select, multi-checkbox) can be easily customized through a number of attributes
+  * transactions are enabled by default for state modifying HTTP methods of all form views \(create, update, delete and custom form views\)
+* option controls \(select, multi-checkbox\) can be easily customized through a number of attributes
   * making it easier to specify the option values that can be selected
+
+
+
