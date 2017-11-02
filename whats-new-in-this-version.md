@@ -4,6 +4,10 @@
 
 * it is now possible to configure default view element modes \(eg. control or readonly rendering\) on an `EntityConfiguration`
   * these will be used in all cases where no specific configuration has been configured on property level
+* added [message codes](/appendix/message-codes.md) for admin menu items 
+  * of the entity management section
+  * of a group of entities \(defaults to the module name\)
+  * of a single entity type
 
 ## 2.1.0.RELEASE
 

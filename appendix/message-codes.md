@@ -6,6 +6,8 @@ Unless custom `EntityMessageCodeResolver` instances are being used, message code
 
 |Message code|Description|
 |---|---|
+|EntityModule.adminMenu|Title of the root menu group for entity management.|
+|_ModuleName_.adminMenu|Title of the menu group for the entities of that module.|
 | enums.*EnumName*.*EnumValue*| Message code for a single enum value label. <br> Example: _enums.Numbers.ONE_|
 | *EntityPrefix*.name.singular| Label for an entity in singular form, for use outside or at the beginning of a sentence. <br>Example: _UserModule.entities.user.name.singular_ |
 | *EntityPrefix*.name.plural | Label for an entity in plural form, for use outside or at the beginning of a sentence. <br>Example: _UserModule.entities.user.name.plural_ |
@@ -15,6 +17,7 @@ Unless custom `EntityMessageCodeResolver` instances are being used, message code
 | *EntityPrefix*.properties.*propertyName*[description]| Description text for a property.  If not empty this will be rendered in a help block on forms. <br>Example: _UserModule.entities.user.properties.username[description]_|
 | *EntityPrefix*.properties.*propertyName*[placeholder]| Placeholder text for a property.  Will be used for certain controle like textbox. <br>Example: _UserModule.entities.user.properties.username[placeholder]_|
 | *EntityPrefix*.validation.*validatorKey*| Description text for a validation error message.  Optionally can be suffixed with the specific property name. <br>Example: _UserModule.entities.user.validation.NotBlank_,  _UserModule.entities.user.validation.alreadyExists.username_|
+| *EntityPrefix*.adminMenu| Title of the admin menu item for this entity.  Defaults to the singular name of the entity.|
 | *EntityPrefix*.adminMenu.general| Name of the _General_ tab.  Usually the first tab that is also opened when creating a new entity.|
 | *EntityPrefix*.adminMenu.*associationName*| Name of the tab for that association. <br>Example: _UserModule.entities.group.adminMenu.user.groups_|
 | *EntityPrefix*.actions.*actionName*| Name of the actions, usually the buttons or links on a page.  Often you just want to replace these on a global level. <br>Example: _EntityModule.entities.actions.save_, _UserModule.entities.group.actions.cancel_|
@@ -63,6 +66,8 @@ You can trace the message codes being resolved by setting the logger named *com.
 The following is a copy of **EntityModule.properties** which contains the default message codes for EntityModule.
 
 ```
+EntityModule.adminMenu=Entity management
+
 # Default actions
 EntityModule.entities.actions.create=Create a new {1}
 EntityModule.entities.actions.view=View {1} details
