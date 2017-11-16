@@ -240,7 +240,7 @@ entities.withType( WebCmsArticle.class )
          */
         .properties( props -> props
             .property( "section" )
-            .attribute( EntityAttributes.OPTIONS_ENTITY_QUERY, "published = TRUE" )
+            .attribute( EntityAttributes.OPTIONS_ENTITY_QUERY, "published = TRUE ORDER BY name ASC" )
         )
     );
 ----

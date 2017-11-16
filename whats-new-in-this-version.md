@@ -8,6 +8,10 @@
   * of the entity management section
   * of a group of entities \(defaults to the module name\)
   * of a single entity type
+* [EntityQuery Language](/entityquery-infrastructure.md) allows specifying an order by clause or a `Sort` specifier
+* `OptionIterableBuilder` can return a sorted specification by implementing the isSorted\(\) method
+  * if the `OptionGenerator` has no explicit sorting parameter set, it now only sorts if the configured `OptionIterableBuilder` is not sorted
+  * if you specify option values using an EQL statement, the sort specifier of your `EntityQuery` will be taken into account
 
 ## 2.1.0.RELEASE
 

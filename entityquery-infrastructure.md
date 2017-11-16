@@ -29,8 +29,10 @@ Apart from building an `EntityQuery` in code, one can be specified using the Ent
 EQL provides an SQL-like syntax for building queries.  Some examples could be:
 
 * `name = 'john'`
+* `order by birthday asc`
+* `name = 'john' order by birthday desc, registrationDate asc`
 * `name = 'john' and birthday >= '1980-01-01'`
-* `(name in ('john', 'jane') and birthday = today()) or birthday is EMPTY`
+* `(name in ('john', 'jane') and birthday = today()) or birthday is EMPTY order by name asc`
 * `children contains 'john' or children is EMPTY`
 
 A single clause of a query consists of a _field_, followed by an _operator_, followed by one or more _values_ or _functions_.
@@ -40,7 +42,10 @@ Operator precedence can be enforced by using parentheses around a clause.
 
 A _field_ of a query clause usually corresponds with a single property you want to query.
 
-> Special characters in string literals should be escaped using the \ (backslash) character.
+A SQL-like _order by_ clause specifying one or more properties is also supported.
+An EQL statement with only an ordering clause will select all items in that order.
+
+> Special characters in string literals should be escaped using the \\ (backslash) character.
 In case of like conditions, they should be double-escaped.
 
 ### Supported operators
@@ -106,12 +111,13 @@ This will convert any equality or like operator to the equivalent case insensiti
 Whenever possible, it is probably best to use collation settings of your datastore to ensure case insensitive querying of properties.  Configuring it on a datastore level will almost certainly give you much better performance.  If collation is not possible, investigate the option of using function indices on the relevant columns.
 
 #### CONTAINS/NOT CONTAINS
-Usable on collection property types.
+Usable on collection or text property types.
+In case of text the contains statement is translated to a like statement with wildcards before and after.
 
 |Operator|Description|
 |---|---|
-|`CONTAINS`  | argument should be present in the collection
-|`NOT CONTAINS` | argument should not be present in the collection
+|`CONTAINS`  | argument should be present in the collection or string should be present in the text
+|`NOT CONTAINS` | argument should not be present in the collection or string should not be present in the text
 
 #### IS NULL/IS NOT NULL
 Usable on single value properties only.
