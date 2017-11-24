@@ -166,6 +166,8 @@ This can be done through the `entityQueryFilter()` method on the `EntityListView
 The EQL filter will add a simple textbox that allows you to enter the EQL statement you want to use as filter for the list view.
 Extend the `EntityQueryFilterProcessor` if you want to customize the default implementation.
 
+
+
 **Enabling the default EQL filter**
 ```java
 entities.withType( Group.class )

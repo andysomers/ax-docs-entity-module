@@ -12,6 +12,7 @@
 * `OptionIterableBuilder` can return a sorted specification by implementing the isSorted\(\) method
   * if the `OptionGenerator` has no explicit sorting parameter set, it now only sorts if the configured `OptionIterableBuilder` is not sorted
   * if you specify option values using an EQL statement, the sort specifier of your `EntityQuery` will be taken into account
+* [EQL filterin](/entityquery-infrastructure.md)g has been improved. It now allows a configuration to filter on specific properties in a basic and/or advanced mode.
 
 ## 2.1.0.RELEASE
 
