@@ -26,6 +26,17 @@ Unless custom `EntityMessageCodeResolver` instances are being used, message code
 | *EntityPrefix*.feedback.*feedbackType*| Feedback message shown for the given feedback type. <br>Example: _UserModule.entities.user.feedback.validationErrors_|
 | *EntityPrefix*.sortableTable.*| Sortable table results and pager text keys. <br>Example: _UserModule.entities.user.sortableTable.resultsFound_|
 | *EntityPrefix*.delete.*| Delete view specific messages.<br>Example: _UserModule.entities.user.delete.confirmation_|
+|*EntityPrefix*.entityQueryFilter.linkToAdvancedMode| The label for the button to navigate from basic to advanced mode.|
+|*EntityPrefix*.entityQueryFilter.linkToBasicMode| The label for the button to navigate from advanced to basic mode.|
+|*EntityPrefix*.entityQueryFilter.eqlPlaceholder| The placeholder for the eql statement filter.|
+|*EntityPrefix*.entityQueryFilter.searchButton| The label for the entity query filter on the search button.|
+|*EntityPrefix*.entityQueryFilter.eqlDescription| An additional description for the eql statement filter.|
+|*EntityPrefix*.entityQueryFilter.convertibleToBasicMode[helpText]| The descriptive text that should be shown when hovering over the "basic" mode button when the query is not convertible to basic mode.|
+|*EntityPrefix*.properties.*propertyName*[filterNotSelected]|Label for the empty option in a filter control.|
+|*EntityPrefix*.properties.*propertyName*.value[empty]|Label for the empty option of an entity property.|
+|*EntityPrefix*.properties.*propertyName*.value[true]|Label that should be used instead of `true` for a boolean property.|
+|*EntityPrefix*.properties.*propertyName*.value[false]|Label that should be used instead of `false` for a boolean property.|
+|*EntityPrefix*.properties.*propertyName*.value[notSet]|Label that should be used for the `null` option in a filter control.|
 
 > _Entity_ codes are camel cased, eg. `CarBrand` would become *carBrand*
 
