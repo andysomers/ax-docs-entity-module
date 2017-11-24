@@ -166,12 +166,42 @@ This can be done through the `entityQueryFilter()` method on the `EntityListView
 The EQL filter will add a simple textbox that allows you to enter the EQL statement you want to use as filter for the list view.
 Extend the `EntityQueryFilterProcessor` if you want to customize the default implementation.
 
+The EQL filter now also allows define an `EntityQueryFilterConfiguration`. Using the `EntityQueryFilterConfiguration`, you can define which filtering modes should be available. By default, both basic and advanced mode will be available. The controls will be build using `EntityQueryFilterFormControlBuilder`
+
+### Basic mode
+Basic mode enables the use of controls to filter by and will parse the content of the property controls to a valid eql statement which will then be submitted.
+By default the following controls are allowed:
+* Text controls 
+* Boolean controls
+* Select controls
+* Radio controls
+* Checkbox controls
+
+Text controls will by default use the `EntityQueryOps.CONTAINS` operand, multiValue controls will use the `EntityQueryOps.IN` operand and otherwise the `EntityQueryOps.EQ` operand will be used if none was specified on the property directly. 
+
+For easier switching between basic and advanced mode, it is also possible to define an `EntityAttribute.OPTIONS_ENHANCER` on the property, which allows to define the value to be used for the object (e.g. instead of the id of a group, i'd like to see the name of the group whilst filtering). An `EntityQueryValueEnhancer` however merely defines a label to use. For the statement to be parsed successfully you will also need to provide a `Converter` to map the label to an actual entity.
+
+The values of the filter controls will be set using the `EntityQueryRequest` and `EntityQueryRequestValueFetcher`.
+
+### Advanced mode
+Advanced mode enables the use of EQL to filter the current view using a simple textbox. If both advanced and basic mode are allowed, and the EQL statement that was last executed is not convertible to basic mode, basic mode will be disabled.
 
 
 **Enabling the default EQL filter**
 ```java
 entities.withType( Group.class )
         .listView( lvb -> lvb.entityQueryFilter( true )	);
+```
+
+**Enabling basic and advanced EQL filtering**
+```java
+entities.withType( WebCmsArticle.class )
+        .listview( 
+            lvb -> lvb.entityQueryFilter(
+              eqf -> eqf.showProperties("title", "articleType") // create a control for title and articleType
+                     .multiValue("articleType") // It should be possible to filter on multiple article types
+            )
+        );
 ```
 
 ## EQL predicate on list view
