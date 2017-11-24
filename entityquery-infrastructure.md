@@ -203,6 +203,18 @@ entities.withType( WebCmsArticle.class )
             )
         );
 ```
+### Message codes
+Various message codes have been provided for EQL filtering.
+**The following message codes should be prefixed by `EntityModule.entities`**
+
+|Message code|description|
+|---|---|
+|`entityQueryFilter.linkToAdvancedMode`| The label that should be shown to navigate from basic to advanced mode. The default value is "Advanced".
+|`entityQueryFilter.linkToBasicMode`| The label that should be shown to navigate from advanced to basic mode. The default value is "Basic".
+|`entityQueryFilter.eqlPlaceholder`| The placeholder that should be filled in in the eql statement filter.
+|`entityQueryFilter.searchButton`| The label that should be shown on the search button.
+|`entityQueryFilter.eqlDescription`| An additional description that should be added under the eql statement filter.
+|`entityQueryFilter.convertibleToBasicMode[helpText]`| The description that should be shown when hovering over the "basic" mode button when the query is not convertible to basic mode. Default value is "Query could not be converted to basic mode".
 
 ## EQL predicate on list view
 List views also support a base predicate to be configured as an EQL statement.
