@@ -1,48 +1,48 @@
 # Adding a custom property to an entity
 
-To add a custom property to an entity, all we need to do is add the property on the EntityPropertyRegistryBuilder of the entity. 
+To add a custom property to an entity, all we need to do is add the property on the EntityPropertyRegistryBuilder of the entity.
 
-In the following example we will add a property named _customProperty _of the type `String`, which always returns _myCustomString_.
+In the following example we will add a property named _customProperty_ of_ the type _`String`, which always returns _myCustomString_.
 
 ```java
 @Override
 public void configure( EntitiesConfigurationBuilder configuration ) {
        configuration.withType(MyEntity.class)
-	            .properties(props -> props.property("customProperty")
-						   .propertyType(TypeDescriptor.valueOf(String.class))
-						   .valueFetcher((entity) -> "myCustomString")
-						
+                .properties(props -> props.property("customProperty")
+                           .propertyType(TypeDescriptor.valueOf(String.class))
+                           .valueFetcher((entity) -> "myCustomString")
+
                      )
 }
 ```
 
 ## Configuring the custom property to expand it's search to other properties
 
-To expand the search to other properties, we need to modify the query defined by the custom property. To do this we can add an a custom `EntityQueryConditionTranslator `under the `EntityQueryConditionTranslator.class` attribute.
+To expand the search to other properties, we need to modify the query defined by the custom property. To do this we can add an a custom `EntityQueryConditionTranslator`under the `EntityQueryConditionTranslator.class` attribute.
 
-In the following example, we will perform the query of the _customProperty _on the _name _and _content _properties.
+In the following example, we will perform the query of the _customProperty_ on the _name_ and _content_ properties.
 
 ```java
 @Override
 public void configure( EntitiesConfigurationBuilder configuration ) {
        configuration.withType(MyEntity.class)
-	            .properties(props -> props.property("customProperty")
-						   .propertyType(TypeDescriptor.valueOf(String.class))
-						   .valueFetcher((entity) -> "myCustomString")
-						   .attribute( EntityQueryConditionTranslator.class,
-		                                                    condition -> {
-			                                                    EntityQuery entityQuery = new EntityQuery();
-			                                                    entityQuery.setOperand( EntityQueryOps.OR );
-			                                                    entityQuery.add(
-					                                                    new EntityQueryCondition( "name",
-					                                                                              condition.getOperand(),
-					                                                                              condition.getArguments() ) );
-			                                                    entityQuery.add(
-					                                                    new EntityQueryCondition( "content", condition.getOperand(),
-					                                                                              condition.getArguments() ) );
-			                                                    return entityQuery;
-		                                                    } )
-						
+                .properties(props -> props.property("customProperty")
+                           .propertyType(TypeDescriptor.valueOf(String.class))
+                           .valueFetcher((entity) -> "myCustomString")
+                           .attribute( EntityQueryConditionTranslator.class,
+                                                            condition -> {
+                                                                EntityQuery entityQuery = new EntityQuery();
+                                                                entityQuery.setOperand( EntityQueryOps.OR );
+                                                                entityQuery.add(
+                                                                        new EntityQueryCondition( "name",
+                                                                                                  condition.getOperand(),
+                                                                                                  condition.getArguments() ) );
+                                                                entityQuery.add(
+                                                                        new EntityQueryCondition( "content", condition.getOperand(),
+                                                                                                  condition.getArguments() ) );
+                                                                return entityQuery;
+                                                            } )
+
                      )
 }
 ```
