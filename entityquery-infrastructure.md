@@ -159,47 +159,55 @@ Any entity configuration with an `EntityQueryExecutor` registered will have an `
 The parser will validate the EQL statement and convert it to a strongly typed `EntityQuery`.
 The default `EntityQueryParser` uses the entity related `EntityPropertyRegistry` to validate the query clauses.
 
-## EQL filtering on list view
-Any entity configuration having an `EntityQueryParser` and `EntityQueryExecutor` can enable an EQL based filter on its list views.
-This can be done through the `entityQueryFilter()` method on the `EntityListViewFactoryBuilder.
+## EntityQuery filtering on list view
+Any entity configuration having an `EntityQueryParser` and `EntityQueryExecutor` can enable an EntityQuery based filter on its list views. This can be done through the `entityQueryFilter()` method on the `EntityListViewFactoryBuilder.
 
-The EQL filter will add a simple textbox that allows you to enter the EQL statement you want to use as filter for the list view.
-Extend the `EntityQueryFilterProcessor` if you want to customize the default implementation.
+An EntityQuery filter supports 2 different modes:
 
-The EQL filter now also allows define an `EntityQueryFilterConfiguration`. Using the `EntityQueryFilterConfiguration`, you can define which filtering modes should be available. By default, both basic and advanced mode will be available. The controls will be build using `EntityQueryFilterFormControlBuilder`
+* _basic_ mode allows you to select the property values to filter on using form controls
+* _advanced_ mode give you a textbox for entering any EQL statement to use as filter
+
+By default only advanced mode is active. Basic mode is activated if you configure the properties that should be shown in the filter. You do so by modifying the `EntityQueryFilterConfiguration` that is being used. 
+
+**Activating the default (advanced mode) EntityQuery filter**
+```java
+entities.withType( Group.class )
+        .listView( lvb -> lvb.entityQueryFilter( true ) );
+```
+**Activating basic mode + advanced mode EntityQuery filter**
+```java
+entities.withType( Group.class )
+        .listView( lvb -> lvb.entityQueryFilter( true )
+                             .showProperties( "name", "active" ) );
+```
+
+By default both basic and advanced mode are available, and the UI allows switching between them. All options are configurable on the `EntityQueryFilterConfiguration`. 
 
 ### Basic mode
-Basic mode enables the use of controls to filter by and will parse the content of the property controls to a valid eql statement which will then be submitted.
-By default the following controls are allowed:
-* Text controls 
-* Boolean controls
-* Select controls
-* Radio controls
-* Checkbox controls
+Basic mode enables the use of controls to filter by and will parse the content of the property controls to a valid EQL statement which will then be submitted.
 
-Text controls will by default use the `EntityQueryOps.CONTAINS` operand, multiValue controls will use the `EntityQueryOps.IN` operand and otherwise the `EntityQueryOps.EQ` operand will be used if none was specified on the property directly. 
+By default the following controls will be created - depending on property type:
+* textbox controls 
+* select controls
 
-For easier switching between basic and advanced mode, it is also possible to define an `EntityAttribute.OPTIONS_ENHANCER` on the property, which allows to define the value to be used for the object (e.g. instead of the id of a group, i'd like to see the name of the group whilst filtering). An `EntityQueryValueEnhancer` however merely defines a label to use. For the statement to be parsed successfully you will also need to provide a `Converter` to map the label to an actual entity.
+For select controls, you can specify if multiple values can be selected on the `EntityQueryFilterConfiguration`.
+
+Text controls will by default use the `EntityQueryOps.CONTAINS` operand, multi value controls will use the `EntityQueryOps.IN` operand and otherwise the `EntityQueryOps.EQ` operand will be used if none was specified on the property directly. 
+
+For easier switching between basic and advanced mode, it is also possible to define an `EntityAttribute.OPTIONS_ENHANCER` on the property, which allows to define the value to be used for the object (e.g. instead of the id of a group, i'd like to see the name of the group whilst filtering). An `EntityQueryValueEnhancer` however merely defines a label to use. For the statement to be parsed successfully you will also need to register a corresponding `Converter` on the `ConversionService`.
 
 The values of the filter controls will be set using the `EntityQueryRequest` and `EntityQueryRequestValueFetcher`.
 
 ### Advanced mode
 Advanced mode enables the use of EQL to filter the current view using a simple textbox. If both advanced and basic mode are allowed, and the EQL statement that was last executed is not convertible to basic mode, basic mode will be disabled.
 
-
-**Enabling the default EQL filter**
-```java
-entities.withType( Group.class )
-        .listView( lvb -> lvb.entityQueryFilter( true )	);
-```
-
-**Enabling basic and advanced EQL filtering**
+**Example EntityQuery filter configuration**
 ```java
 entities.withType( WebCmsArticle.class )
         .listview( 
             lvb -> lvb.entityQueryFilter(
               eqf -> eqf.showProperties("title", "articleType") // create a control for title and articleType
-                     .multiValue("articleType") // It should be possible to filter on multiple article types
+                        .multiValue("articleType") // It should be possible to filter on multiple article types
             )
         );
 ```
@@ -302,11 +310,24 @@ public class HelloFunction implements EntityQueryFunctionHandler
 You can register an `EntityQueryConditionTranslator` attribute on any entity property.
 If a translator instance is present, it will be called during the parsing phase of an EQL statement into an `EntityQuery`.
 
-**Example registering a translator**
+**Ensuring a field search is always case insensitive**
 ```java
 configuration
  .withType( Group.class )
  .properties(
     props -> props.property( "name" ).attribute( EntityQueryConditionTranslator.class, EntityQueryConditionTranslator.ignoreCase() )
  )
+```
+
+**Define a search text property that actually searches on other fields**
+```java
+configuration.withType( Note.class )
+             .properties( props -> props.property( "text" )
+                                        .valueFetcher( entity -> "" )
+                                        .propertyType( TypeDescriptor.valueOf( String.class ) )
+                                        .viewElementType( ViewElementMode.CONTROL, BootstrapUiElements.TEXTAREA )
+                                        .attribute( EntityQueryConditionTranslator.class,
+                                                    EntityQueryConditionTranslator.expandingOr( "name", "content" ) )
+                                        .hidden( true )
+		             )
 ```
