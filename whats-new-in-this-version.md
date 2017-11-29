@@ -1,6 +1,6 @@
 # What's new in this version?
 
-## 2.2.0-SNAPSHOT
+## 2.2.0.RELEASE
 
 * it is now possible to configure default view element modes \(eg. control or readonly rendering\) on an `EntityConfiguration`
   * these will be used in all cases where no specific configuration has been configured on property level
