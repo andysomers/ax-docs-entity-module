@@ -1,5 +1,10 @@
 # What's new in this version?
 
+## 2.2.1-SNAPSHOT
+
+* it is now possible to configure default view element modes \(eg. control or readonly rendering\) on an `EntityConfiguration`
+  * these will be used in all cases where no specific configuration has been configured on property level
+
 ## 2.2.0.RELEASE
 
 * added [message codes](/appendix/message-codes.md) for admin menu items 
