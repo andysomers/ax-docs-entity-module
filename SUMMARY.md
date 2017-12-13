@@ -4,10 +4,10 @@
 
 * [Introduction](README.md)
 * [What's new in this version](whats-new-in-this-version.md)
-* [General information](general-information.md)
-  * [Artifact](/general-information.md#module-artifact)
-  * [Module dependencies](/general-information.md#module-dependencies)
-  * [Module settings](/general-information.md#module-settings)
+* [General information](/general-information.md)
+  * [Artifact](///general-information.md#module-artifact)
+  * [Module dependencies](//general-information.md#module-dependencies)
+  * [Module settings](//general-information.md#module-settings)
 * [How EntityModule works](how-entitymodule-works.md)
   * [Entity views](how-entitymodule-works/entity-views.adoc)
     * [List view](how-entitymodule-works/entity-views/list-view.adoc)
@@ -31,4 +31,6 @@
 
 * [Adding a custom property to an entity](how-tos/adding-a-custom-property-to-an-entity.md)
 * [Customizing the listview of an entity](how-tos/adding-a-custom-action-to-a-listview.md)
+
+
 
