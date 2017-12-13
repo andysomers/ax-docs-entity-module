@@ -103,7 +103,7 @@ Every view is built by an `EntityViewFactory`.
 An `EntityViewRegistry` (like `EntityConfiguration` or `EntiyAssociation`) is nothing but a map of `EntityViewFactory` by view name.
 
 An `EntityViewFactory` is a stateless controller with 4 controller methods that are expected to be called in a specific order.
-Please refer to the {javadoc}/com/foreach/across/modules/entity/views/EntityViewFactory.html[javadoc] for an overview of the different controller methods and their purpose.
+Please refer to the {{book.javadoc}}/com/foreach/across/modules/entity/views/EntityViewFactory.html[javadoc] for an overview of the different controller methods and their purpose.
 
 ===== DispatchingEntityViewFactory and EntityViewProcessor
 EntityModule has only a single implementation of `EntityViewFactory` in the form of the `DefaultEntityViewFactory`.
@@ -122,7 +122,7 @@ Two adapter `EntityViewProcessor` classes are available:
 
 NOTE: The `DefaultEntityViewFactory` will not execute any of the rendering related methods if any of the previous methods has marked the `EntityView` as being a redirect.
 
-Please refer to the {javadoc}/com/foreach/across/modules/entity/views/EntityViewProcessor.html[EntityViewProcessor], {javadoc}/com/foreach/across/modules/entity/views/processors/EntityViewProcessorAdapter.html[EntityViewProcessorAdapter] and {javadoc}/com/foreach/across/modules/entity/views/processors/SimpleEntityViewProcessorAdapter.html[SimpleEntityViewProcessorAdapter] for more details on the available processor methods.
+Please refer to the {{book.javadoc}}/com/foreach/across/modules/entity/views/EntityViewProcessor.html[EntityViewProcessor], {{book.javadoc}}/com/foreach/across/modules/entity/views/processors/EntityViewProcessorAdapter.html[EntityViewProcessorAdapter] and {{book.javadoc}}/com/foreach/across/modules/entity/views/processors/SimpleEntityViewProcessorAdapter.html[SimpleEntityViewProcessorAdapter] for more details on the available processor methods.
 The appendix also provides a <<appendix-view-processors,list of all available general purpose processors>>.
 
 [[transaction-support]]
