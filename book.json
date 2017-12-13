@@ -2,7 +2,7 @@
     "variables": {
         "moduleVersion": "2.2.0.RELEASE",
         "moduleUrl": "https://foreach.atlassian.net/wiki/display/AX/EntityModule",
-        "javadoc": "http://across.foreach.be/docs/across-standard-modules/EntityModule/2.2.0.RELEASE/javadoc",
+        "javadoc": "https://across-docs.foreach.be/across-standard-modules/EntityModule/2.2.0.RELEASE/javadoc",
         "javadocProcessors": "http://across.foreach.be/docs/across-standard-modules/EntityModule/2.2.0.RELEASE/javadoc/com/foreach/across/modules/entity/views/processors"
     },
     "plugins": [ "versions", "edit-link"],
