@@ -14,7 +14,7 @@
 
 ## 2.1.0.RELEASE
 
-* improve the ability to [customize page titles and layouts](/customizing-entity-views.md)
+* improve the ability to [customize page titles and layouts](/customizing-entity-views.adoc)
   * all entity views now set a page \(sub\) title if a matching message code returns a non-empty string
     * there is a default title for all views except the list view
   * list views now also publish an `EntityPageStructureRenderedEvent`
