@@ -74,14 +74,14 @@ Wraps together all the information of a specific entity view request:
  * the name of the view being requested and the `EntityViewFactory` being used
  * the `PageContentStructure` of the page being rendered (if applicable)
 
-Please refer to the {javadoc}/com/foreach/across/modules/entity/views/request/EntityViewRequest.html/[`EntityViewRequest` javadoc] for a description of all available properties.
+Please refer to the {{book.javadoc}}/com/foreach/across/modules/entity/views/request/EntityViewRequest.html/[`EntityViewRequest` javadoc] for a description of all available properties.
 
 ==== EntityViewContext
 The `EntityViewContext` contains contextual information and provides access to components that should be used for building a view.
 Contextual information is for example the entity type, specific entity or entity association being viewed.
 Components are things like the `EntityLinkBuilder`, `EntityMessages` or `AllowableActions`
 
-Please refer to the {javadoc}/com/foreach/across/modules/entity/views/context/EntityViewContext.html/[`EntityViewContext` javadoc] for a description of all available properties.
+Please refer to the {{book.javadoc}}/com/foreach/across/modules/entity/views/context/EntityViewContext.html/[`EntityViewContext` javadoc] for a description of all available properties.
 
 NOTE: `EntityViewContext` is available as a request-scoped bean but only in case of a request passing through the `GenericEntityViewController` will the data be loaded.
 Loading the `EntityViewContext` attributes manually  can be done by using the `EntityViewContextLoader` bean.
@@ -96,7 +96,7 @@ Customizing view processing can be done by registering additional extensions tha
 
 The `EntityViewCommand` will be validated for every state modifying request: web requests using POST, PUT, PATCH or DELETE.
 
-Please refer to the {javadoc}/com/foreach/across/modules/entity/views/request/EntityViewCommand.html/[`EntityViewCommand` javadoc] for a description of all available properties.
+Please refer to the {{book.javadoc}}/com/foreach/across/modules/entity/views/request/EntityViewCommand.html/[`EntityViewCommand` javadoc] for a description of all available properties.
 
 ==== EntityViewFactory
 Every view is built by an `EntityViewFactory`.

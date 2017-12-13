@@ -22,7 +22,7 @@ The `PageContentStructure` is available as a request scoped bean, but can also b
 See the {admin-web-module-docs}#page-content-structure[AdminWebModule reference documentation] for a basic explanation of `PageContentStructure`.
 
 .Modifying the page layout for all (or a selection of) views
-If you want to modify page layout for multiple views at runtime, you can subscribe to the {javadoc}/com/foreach/across/modules/entity/views/processors/support/EntityPageStructureRenderedEvent.html[`EntityPageStructureRenderedEvent`].
+If you want to modify page layout for multiple views at runtime, you can subscribe to the {{book.javadoc}}/com/foreach/across/modules/entity/views/processors/support/EntityPageStructureRenderedEvent.html[`EntityPageStructureRenderedEvent`].
 This event is published during the `postRender()` phase and gives you context of the view that is being rendered, allowing you to make changes outside regular `EntityViewProcessor` implementations.
 
 `SingleEntityPageStructureViewProcessor` and `ListPageStructureViewProcessor` are the <<appendix-view-processors,view processors>> responsible for building the basic page structure and publishing the event.
