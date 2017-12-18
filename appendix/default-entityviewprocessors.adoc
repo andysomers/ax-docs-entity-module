@@ -2,7 +2,7 @@
 = Default EntityViewProcessors
 
 This chapter lists the general purpose `EntityViewProcessor` classes that are provided by EntityModule.
-The <<../entity-views.adoc,default entity views>> are all built on these processors.
+The link:../how-entitymodule-works/entity-views.adoc[default entity views] are all built on these processors.
 
 You can use these manually to assemble a `DefaultEntityViewFactory`, though some will be configured automatically if you use one of the builders.
 
@@ -31,7 +31,7 @@ For a full list of all processors available, see the {{ book.javadocProcessors }
 | Registers a custom `EntityPropertyRegistry` on the view context.
 
 | {{ book.javadocProcessors }}/EntityQueryFilterProcessor.html[EntityQueryFilterProcessor]
-| Adds an <<../entityquery-infrastructure.md,EntityQuery language>> based filter to a list view.
+| Adds an link:../entityquery-infrastructure.md[EntityQuery language] based filter to a list view.
 Adds both the form with textbox and fetches the items based on the form values.
 
 | {{ book.javadocProcessors }}/GlobalFeedbackViewProcessor.html[GlobalFeedbackViewProcessor]
