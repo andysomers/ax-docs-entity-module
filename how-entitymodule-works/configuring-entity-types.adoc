@@ -136,7 +136,7 @@ DOCUMENTATION TODO:
 
 [[automatic-attributes]]
 ===== Automatic attribute registration
-See the appendix for an <<appendix-entity-configuration-attributes,overview of commonly registered attributes>>.
+See the appendix for an link:../appendix/attributes-overview.adoc#appendix-entity-configuration-attributes[overview of commonly registered attributes].
 
 
 

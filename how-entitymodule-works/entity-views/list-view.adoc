@@ -29,7 +29,7 @@ You can use this to sort on a different property instead, or to specify behaviou
 ==== Filtering a list view
 
 By default a list view is not filtered.
-If your entity has an <<entity-query-executor,`EntityQueryExecutor`>> available you can easily activate a simple yet powerful <<entity-query-language,EQL-based filter>>.
+If your entity has an link:../../entityquery-infrastructure.md#entity-query-executor[`EntityQueryExecutor`] available you can easily activate a simple yet powerful link:../../entityquery-infrastructure.md#entity-query-language[EQL-based filter].
 Activating `EntityQuery` based filtering can be done through the builders:
 
 [source,java,indent=0]

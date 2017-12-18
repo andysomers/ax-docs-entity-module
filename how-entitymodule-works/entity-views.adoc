@@ -16,7 +16,7 @@ Likewise CRUD views will be created for every `EntityAssociation` with an `Assoc
 
 NOTE: Query executor attributes should be registered automatically in most cases.
 So you usually don't need to worry about those.
-See the <<entity-query-executor,chapter on `EntityQueryExecutor`>> for more information.
+See the link:../entityquery-infrastructure.md#entity-query-executor[chapter on `EntityQueryExecutor`] for more information.
 
 The following default views will be created for an entity type:
 
@@ -124,7 +124,7 @@ Two adapter `EntityViewProcessor` classes are available:
 NOTE: The `DefaultEntityViewFactory` will not execute any of the rendering related methods if any of the previous methods has marked the `EntityView` as being a redirect.
 
 Please refer to the {{book.javadoc}}/com/foreach/across/modules/entity/views/EntityViewProcessor.html[EntityViewProcessor], {{book.javadoc}}/com/foreach/across/modules/entity/views/processors/EntityViewProcessorAdapter.html[EntityViewProcessorAdapter] and {{book.javadoc}}/com/foreach/across/modules/entity/views/processors/SimpleEntityViewProcessorAdapter.html[SimpleEntityViewProcessorAdapter] for more details on the available processor methods.
-The appendix also provides a <<appendix-view-processors,list of all available general purpose processors>>.
+The appendix also provides a link:../appendix/default-entityviewprocessors.adoc#appendix-view-processors[list of all available general purpose processors].
 
 [[transaction-support]]
 ===== Transaction support
@@ -190,9 +190,9 @@ The following view types are defined:
 |===
 
 The template name can be used to replace the initializer for the `EntityViewFactoryBuilder`.
-See the chapter on the <<view-builder-initializer,EntityViewFactoryBuilderInitializer>>.
+See the chapter on the link:../customizing-entity-views.adoc#view-builder-initializer[EntityViewFactoryBuilderInitializer].
 
-See also the next chapters for more information on <<list-view,list view>>, <<form-view,form view>> and <<generic-view,generic view>>.
+See also the next chapters for more information on link:entity-views/list-view.adoc#list-view[list view], link:entity-views/form-view.adoc#form-view[form view] and link:entity-views/generic-view.adoc#generic-view[generic view].
 
 [[configuring-views]]
 === Configuring views
