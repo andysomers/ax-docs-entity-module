@@ -3,7 +3,9 @@
         "moduleVersion": "2.2.0.RELEASE",
         "moduleUrl": "https://foreach.atlassian.net/wiki/display/AX/EntityModule",
         "javadoc": "https://across-docs.foreach.be/across-standard-modules/EntityModule/2.2.0.RELEASE/javadoc",
-        "javadocProcessors": "http://across.foreach.be/docs/across-standard-modules/EntityModule/2.2.0.RELEASE/javadoc/com/foreach/across/modules/entity/views/processors"
+        "javadocProcessors": "http://across.foreach.be/docs/across-standard-modules/EntityModule/2.2.0.RELEASE/javadoc/com/foreach/across/modules/entity/views/processors",
+        "adminWebModuleDocsUrl": "https://across-docs.foreach.be/across-standard-modules/AdminWebModule/2.1.1.RELEASE/reference",
+        "bootstrapUiModuleUrl": "https://across-docs.foreach.be/across-standard-modules/BootstrapUiModule/1.2.0.RELEASE/reference"
     },
     "plugins": [ "versions", "edit-link"],
     "pluginsConfig": {

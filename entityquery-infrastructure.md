@@ -13,7 +13,7 @@ This means that any entity configurations having a repository of this type will 
 
 > Since the `EntityQueryExecutor` is backed by a specific repository implementation, supported functionality also depends on the actual backing repository.
 
-The presence of the `EntityQueryExecutor` is a requirement for the default [entity views](/how-entitymodule-works/entity-views.md).
+The presence of the `EntityQueryExecutor` is a requirement for the default [entity views](/how-entitymodule-works/entity-views.adoc).
 
 ### AssociatedEntityQueryExecutor
 Like `EntityQueryExecutor` that is registered on the `EntityConfiguration`, every `EntityAssociation` can have an `AssociatedEntityQueryExecutor` registered.

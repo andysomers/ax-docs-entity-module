@@ -18,7 +18,7 @@ default settings of a form view:
 default processors
 
 
-[delete-view]]
+[#delete-view]
 === Delete view
 
 default settings

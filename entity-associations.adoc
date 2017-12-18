@@ -55,7 +55,7 @@ By default an association is of type `LINKED`.
 An `EntityAssociation` has a *parentDeleteMode* property that determines how associated items will influence the ability to delete in the user interface.
 The default value is `SUPPRESS` but can be set through the `EntitiesConfigurationBuilder`.
 
-For more information see the <<delete-view,delete view chapter>>.
+For more information see the link:how-entitymodule-works/entity-views/form-view.adoc#delete-view[delete view chapter].
 
 === Association naming and location
 Associations are added to the `EntityConfiguration` for which it makes most sense to manage them from a UI perspective.

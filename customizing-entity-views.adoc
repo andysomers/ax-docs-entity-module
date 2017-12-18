@@ -13,19 +13,19 @@ For an explanation of the different message codes used, see <<appendix-message-c
 Setting a page title can be done by adding the corresponding message code.
 All default views automatically add a page title (optionally with sub text) if the corresponding message code resolves a non-empty string.
 
-See the <<appendix-message-codes,message codes appendix>> for a list of relevant message codes.
+See the link:appendix/message-codes.md[message codes appendix] for a list of relevant message codes.
 
 .Changing the page layout
 Entity views use a `PageContentStructure` for the base structure of the web page.
 The `PageContentStructure` is available as a request scoped bean, but can also be retrieved from the `EntityViewRequest`.
 
-See the {admin-web-module-docs}#page-content-structure[AdminWebModule reference documentation] for a basic explanation of `PageContentStructure`.
+See the {{book.adminWebModuleDocsUrl}}#page-content-structure[AdminWebModule reference documentation] for a basic explanation of `PageContentStructure`.
 
 .Modifying the page layout for all (or a selection of) views
 If you want to modify page layout for multiple views at runtime, you can subscribe to the {{book.javadoc}}/com/foreach/across/modules/entity/views/processors/support/EntityPageStructureRenderedEvent.html[`EntityPageStructureRenderedEvent`].
 This event is published during the `postRender()` phase and gives you context of the view that is being rendered, allowing you to make changes outside regular `EntityViewProcessor` implementations.
 
-`SingleEntityPageStructureViewProcessor` and `ListPageStructureViewProcessor` are the <<appendix-view-processors,view processors>> responsible for building the basic page structure and publishing the event.
+`SingleEntityPageStructureViewProcessor` and `ListPageStructureViewProcessor` are the link:appendix/default-entityviewprocessors.adoc#appendix-view-processors[view processors] responsible for building the basic page structure and publishing the event.
 
 === Specifying a custom template
 
@@ -218,7 +218,7 @@ If no _viewElementType_ has been specified, a default type will be determined: a
 A select control being generated will be a https://silviomoreto.github.io/bootstrap-select/[bootstrap-select] with default configuration.
 You can customize the select box configuration by manually setting a `SelectFormElementConfiguration` attributes.
 
-See the {bootstrap-ui-module-url}[BootstrapUiModule documentation] for all configurable properties.
+See the {{book.bootstrapUiModuleUrl}}[BootstrapUiModule documentation] for all configurable properties.
 
 If no _viewElementType_ has been specified, but a `SelectFormElementConfiguration` attribute is present, the resulting control will be a select box.
 
@@ -266,4 +266,4 @@ entities.withType( WebCmsUrl.class )
 
 NOTE: Depending on the attribute you will change more of the default behaviour and will have to provide custom implementations.
 Use the most appropriate attribute for your use case.
-See the <<appendix-entity-configuration-attributes,appendix for more information on the different attributes>>.
+See the link:appendix/attributes-overview.adoc#appendix-entity-configuration-attributes[appendix for more information on the different attributes].
