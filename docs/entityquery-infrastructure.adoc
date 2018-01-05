@@ -1,3 +1,4 @@
+[[entity-query-infrastructure]]
 = EntityQuery infrastructure
 :sectnums:
 :chapter-number: 0
@@ -6,6 +7,7 @@ This abstraction is built around the concept of an `EntityQuery`.
 
 This chapter gives some insight in the setup and how to customize if so wanted.
 
+[[entity-query-executor]]
 ## EntityQueryExecutor
 The `EntityQueryExecutor` is responsible for executing an `EntityQuery` and returning the entities requested.
 An `EntityConfiguration` can have a single `EntityQueryExecutor.class` attribute holding the executor instance.
@@ -25,6 +27,7 @@ Like the `EntityQueryExecutor`, the `AssociatedEntityQueryExecutor` is usually a
 
 The presence of the `AssociatedEntityQueryExecutor` is a requirement for the default association entity views](/how-entitymodule-works/entity-views.md).
 
+[[entity-query-language-eql]]
 ## EntityQuery Language (EQL)
 
 Apart from building an `EntityQuery` in code, one can be specified using the EntityQuery Language (EQL).
@@ -161,6 +164,7 @@ Any entity configuration with an `EntityQueryExecutor` registered will have an `
 The parser will validate the EQL statement and convert it to a strongly typed `EntityQuery`.
 The default `EntityQueryParser` uses the entity related `EntityPropertyRegistry` to validate the query clauses.
 
+[[entity-query-filtering-on-list-view]]
 ## EntityQuery filtering on list view
 Any entity configuration having an `EntityQueryParser` and `EntityQueryExecutor` can enable an EntityQuery based filter on its list views. This can be done through the `entityQueryFilter()` method on the `EntityListViewFactoryBuilder.
 

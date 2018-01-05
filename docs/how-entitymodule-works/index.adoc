@@ -1,0 +1,15 @@
+= How EntityModule works
+:sectnums:
+:chapter-number: 0
+
+// TODO add documentation for these chapters
+//=== EntityConfiguration and EntityAssociation
+//
+//=== Integration with Spring Data repositories
+
+include::entity-views.adoc[]
+include::entity-views/list-view.adoc[]
+include::entity-views/form-view.adoc[]
+include::entity-views/generic-view.adoc[]
+include::entity-views/adminwebmodule-jquery-plugins.adoc[]
+include::entity-views/linking-to-entity-views.adoc[]

@@ -1,3 +1,4 @@
+[[message-codes]]
 ## Message codes
 
 Labels are resolved using a message code hierarchy.

@@ -1,8 +1,6 @@
 == Integration with other modules
-:sectnums:
-:chapter-number: 0
 
-[[integration:adminwebmodule]]
+[[integration-adminwebmodule]]
 ==== AdminWebModule
 
 If the AdminWebModule is present entity management controllers will be created for all registered entity configurations.

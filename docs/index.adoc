@@ -9,12 +9,12 @@ include::../ax-docs-shared/copyright.adoc[]
 :!sectnums:
 include::introduction.adoc[]
 
-include::whats-new-in-this-version.md[]
+include::whats-new-in-this-version.adoc[]
 include::general-information.adoc[]
 //include::general-information.adoc#module-artifact[]
 //include::general-information.adoc#module-dependencies[]
 //include::general-information.adoc#module-settings[]
-include::how-entitymodule-works.adoc[]
+include::how-entitymodule-works/index.adoc[]
 //include::how-entitymodule-works/entity-views.adoc[]
 //include::how-entitymodule-works/entity-views/list-view.adoc[]
 //include::how-entitymodule-works/entity-views/form-view.adoc[]
@@ -23,9 +23,9 @@ include::how-entitymodule-works.adoc[]
 //include::how-entitymodule-works/entity-views/linking-to-entity-views.adoc[]
 
 include::entity-associations.adoc[]
-:!sectnums:
 
 include::how-entitymodule-works/integration-with-other-modules.adoc[]
+
 :!sectnums:
 
 include::customizing-entity-views.adoc[]
