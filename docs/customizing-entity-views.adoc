@@ -1,8 +1,11 @@
-== Customizing generated Entity views
+= Customizing generated Entity views
+:sectnums:
+:chapter-number: 0
+
 The following section gives an overview of common customizations for generated entity views.
 
-[[view-builder-initializer]]
-DOCUMENTATION TODO: customize view builder initializer
+//[[view-builder-initializer]]
+//DOCUMENTATION TODO: customize view builder initializer
 
 === Changing entity names, property names or other labels
 All entity names, property names and labels can be customized using message sources.

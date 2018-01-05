@@ -1,4 +1,6 @@
-== Configuring entity types
+= Configuring entity types
+:sectnums:
+:chapter-number: 0
 
 [[builders]]
 === Using builders

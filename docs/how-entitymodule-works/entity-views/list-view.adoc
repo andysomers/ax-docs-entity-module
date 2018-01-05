@@ -1,5 +1,6 @@
 [[list-view]]
 === List view
+:chapter-number: 0
 
 default settings of a list view:
 

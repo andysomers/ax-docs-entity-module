@@ -1,0 +1,42 @@
+= EntityModule
+:toc: left
+:toclevels: 2
+:sectanchors:
+include::variables.adoc[]
+
+include::../ax-docs-shared/copyright.adoc[]
+
+:!sectnums:
+include::introduction.adoc[]
+
+include::whats-new-in-this-version.md[]
+include::general-information.adoc[]
+//include::general-information.adoc#module-artifact[]
+//include::general-information.adoc#module-dependencies[]
+//include::general-information.adoc#module-settings[]
+include::how-entitymodule-works.adoc[]
+//include::how-entitymodule-works/entity-views.adoc[]
+//include::how-entitymodule-works/entity-views/list-view.adoc[]
+//include::how-entitymodule-works/entity-views/form-view.adoc[]
+//include::how-entitymodule-works/entity-views/generic-view.adoc[]
+//include::how-entitymodule-works/entity-views/adminwebmodule-jquery-plugins.adoc[]
+//include::how-entitymodule-works/entity-views/linking-to-entity-views.adoc[]
+
+include::entity-associations.adoc[]
+:!sectnums:
+
+include::how-entitymodule-works/integration-with-other-modules.adoc[]
+:!sectnums:
+
+include::customizing-entity-views.adoc[]
+:!sectnums:
+
+include::how-entitymodule-works/configuring-entity-types.adoc[]
+:!sectnums:
+
+include::entityquery-infrastructure.adoc[]
+:!sectnums:
+
+include::appendix/index.adoc[]
+
+include::how-tos/index.adoc[]

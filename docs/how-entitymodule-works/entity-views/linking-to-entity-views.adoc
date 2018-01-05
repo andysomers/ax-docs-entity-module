@@ -1,4 +1,5 @@
 === EntityLinkBuilder
+:chapter-number: 0
 
 An `EntityConfiguration` or `EntityAssociation` can have one or more `EntityLinkBuilder` instances registered in its attributes.
 An `EntityLinkBuilder` is used to create application links to management controllers for the entity.

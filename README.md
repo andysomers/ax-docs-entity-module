@@ -1,17 +1,28 @@
-# EntityModule
+# Across EntityModule reference documentation
 
-###### Version
+This repository has a submodule: [ax-docs-shared](https://github.com/ForeachOS/ax-docs-shared.git).
 
-[{{ book.moduleVersion }}](/whats-new-in-this-version.md)
+To download the submodule use the following commands:
 
-###### Authors
+```
+git submodule init
+git submodule update
+```
 
-Arne Vandamme, Steven Gentens
+If you happen to be on the wrong submodule branch, use the `--remote` option on the update command. 
 
-## About
+To build the html files, execute the following command:
+```
+[Windows]
+gradlew asciidoctor
+[Unix]
+./gradlew asciidoctor
+```
 
-The EntityModule is responsible for automatically generating an administration UI of entities built.
-It provides infrastructure to define an entity model and to generate default web pages based on that model.
-By default all Spring Data repositories are introspected and corresponding entity models are built for every repository.
-
-Module website: {{ book.moduleUrl }}
+To build the distribution zip file, execute the following command:
+```
+[Windows]
+gradlew docsZip
+[Unix]
+./gradlew docsZip
+```

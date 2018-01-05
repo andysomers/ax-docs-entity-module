@@ -1,5 +1,5 @@
 [[appendix-view-processors]]
-= Default EntityViewProcessors
+== Default EntityViewProcessors
 
 This chapter lists the general purpose `EntityViewProcessor` classes that are provided by EntityModule.
 The link:../how-entitymodule-works/entity-views.adoc[default entity views] are all built on these processors.

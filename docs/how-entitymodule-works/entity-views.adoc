@@ -1,5 +1,6 @@
 [[entity-views]]
 == Entity views
+
 EntityModule has the ability to generate automatic views for entities.
 When AdminWebModule is present, automatic CRUD pages for entities will be generated using these views.
 
@@ -51,7 +52,7 @@ The following default views will be created for an entity type:
 
 The default views all render markup using the `ViewElement` infrastructure and the implementations provided by the BootstrapUiModule.
 
-=== How entity views work
+==== How entity views work
 An `EntityView` is created by an `EntityViewFactory` based on an `EntityViewRequest`.
 A controller is still responsible for executing (usually rendering) the actual `EntityView`.
 
@@ -157,7 +158,7 @@ The `GenericEntityViewController` exposes the following model attributes to the 
 
 |===
 
-=== Default view types
+==== Default view types
 EntityModule supports 3 view types by default.
 
 When defining a new view (see the next section) it will be one of these types.
@@ -195,7 +196,7 @@ See the chapter on the link:../customizing-entity-views.adoc#view-builder-initia
 See also the next chapters for more information on link:entity-views/list-view.adoc#list-view[list view], link:entity-views/form-view.adoc#form-view[form view] and link:entity-views/generic-view.adoc#generic-view[generic view].
 
 [[configuring-views]]
-=== Configuring views
+==== Configuring views
 Existing views can be modified or new ones registered using an `EntityViewFactoryBuilder` or `EntityListViewFactoryBuilder`.
 You usually don't create these manually but get a builder for the corresponding view from the configuration or association builder.
 

@@ -1,4 +1,6 @@
 == Integration with other modules
+:sectnums:
+:chapter-number: 0
 
 [[integration:adminwebmodule]]
 ==== AdminWebModule

@@ -1,4 +1,6 @@
 == Entity associations
+:sectnums:
+:chapter-number: 0
 
 The `EntityModule` attempts to automatically detect related entities and creates associations mainly to facilitate UI generation.
 Currently `@OneToMany`, `@ManyToMany` and `@ManyToOne` annotations from `javax.persistence` API are all scanned and used to build `EntityAssociation` entries.

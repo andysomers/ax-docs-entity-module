@@ -1,4 +1,4 @@
-# Message codes
+## Message codes
 
 Labels are resolved using a message code hierarchy.
 Simply define one or more message sources specifying the properties you want.
@@ -40,7 +40,8 @@ Unless custom `EntityMessageCodeResolver` instances are being used, message code
 
 > _Entity_ codes are camel cased, eg. `CarBrand` would become *carBrand*
 
-## EntityPrefix
+[discrete]
+### EntityPrefix
 Every code requested results in several codes being tried with a number of prefixes:
 The following prefixes are tried in oder:
 
@@ -63,22 +64,26 @@ Example lookup of property "name" on the default list view for entity "user":
 
 **TIP**: To get a better insight in the message codes generated, use the entity browser in the developer tools.
 
-## Message code parameters {#message-code-parameters}
+[discrete]
+### Message code parameters {#message-code-parameters}
 Some message codes support parameters, if so, the following could be available:
 
 * {0}: entity name
 * {1}: entity name inline
 * {2}: label of the entity being modified (if known)
 
-## Debugging message code lookups
+[discrete]
+### Debugging message code lookups
 You can trace the message codes being resolved by setting the logger named *com.foreach.across.modules.entity.support.EntityMessageCodeResolver* to _TRACE_ level.
 
-## Default message codes
+[discrete]
+### Default message codes
 The following is a copy of **EntityModule.properties** which contains the default message codes for EntityModule.
 
 ```
 EntityModule.adminMenu=Entity management
 
+[discrete]
 # Default actions
 EntityModule.entities.actions.create=Create a new {1}
 EntityModule.entities.actions.view=View {1} details
@@ -117,6 +122,7 @@ EntityModule.entities.delete.associations=The following items are associated wit
 EntityModule.entities.delete.associatedResults={2} {1}
 
 #
+[discrete]
 # Default validation messages
 #
 EntityModule.entities.validation.Size=Length should be between {2} and {1} characters.
@@ -130,6 +136,7 @@ EntityModule.entities.validation.Max=Value should be less than or equal to {1}.
 
 EntityModule.entities.validation.alreadyExists=Another entity already has this value.
 
+[discrete]
 # Default control messages
 BootstrapUiModule.SelectFormElementConfiguration.noneSelectedText=
 ```

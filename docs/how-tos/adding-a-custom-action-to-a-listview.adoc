@@ -1,6 +1,7 @@
-# Customizing the listview of an entity
+## Customizing the listview of an entity
 
-## **Adding a custom action to each item**
+[discrete]
+### **Adding a custom action to each item**
 
 In the case where we want to add a custom action to each instance of our entity on a listview, we have to register a viewprocessor \(usually an `EntityViewProcessorAdapter`\) on the listview of its entityconfiguration. Then in either the `createViewElementBuilders `or `render `method, we can edit the configured columns of each instance on the listview using the `ViewElementBuilderMap`.
 

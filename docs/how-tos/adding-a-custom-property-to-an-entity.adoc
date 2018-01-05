@@ -1,4 +1,4 @@
-# Adding a custom property to an entity
+## Adding a custom property to an entity
 
 To add a custom property to an entity, all we need to do is add the property on the EntityPropertyRegistryBuilder of the entity.
 
@@ -16,7 +16,8 @@ public void configure( EntitiesConfigurationBuilder configuration ) {
 }
 ```
 
-## Configuring the custom property to expand it's search to other properties
+[discrete]
+### Configuring the custom property to expand it's search to other properties
 
 To expand the search to other properties, we need to modify the query defined by the custom property. To do this we can add an a custom `EntityQueryConditionTranslator`under the `EntityQueryConditionTranslator.class` attribute.
 

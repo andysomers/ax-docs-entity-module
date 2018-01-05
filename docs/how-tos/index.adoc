@@ -1,0 +1,8 @@
+= How-tos
+:sectnums:
+:chapter-number: 0
+
+include::adding-a-custom-property-to-an-entity.adoc[]
+include::adding-a-custom-action-to-a-listview.adoc[]
+
+:!sectnums:
