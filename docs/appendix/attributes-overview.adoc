@@ -19,11 +19,11 @@ The following table lists commonly present attributes on an `EntityConfiguration
 |In case of an entity registered through a Spring Data repository that exposed `PersistentEntity` information.
 
 |`EntityQueryExecutor.class`
-|Holds the `EntityQueryExecutor` that can be used for link:../entityquery-infrastructure.md#entity-query-executor[custom `EntityQuery` execution] and will be used by default for fetching entities.
-Available if the `Repository` was supported by one of the link:../entityquery-infrastructure.md#entity-query-executor[default `EntityQueryExecutor` implementations].
+|Holds the `EntityQueryExecutor` that can be used for <<entity-query-executor,custom `EntityQuery` execution>> and will be used by default for fetching entities.
+Available if the `Repository` was supported by one of the <<entity-query-executor,default `EntityQueryExecutor` implementations>>.
 
 |`EntityQueryParser.class`
-|Holds the `EntityQueryParser` that should be used for link:../entityquery-infrastructure.md#entity-query-language[parsing EQL statements] into a valid `EntityQuery`.
+|Holds the `EntityQueryParser` that should be used for <<entity-query-language-eql,parsing EQL statements>> into a valid `EntityQuery`.
 Available if the `EntityQueryExecutor.class` attribute is present.
 
 |`EntityAttributes.TRANSACTION_MANAGER_NAME`
