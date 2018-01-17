@@ -64,6 +64,8 @@ Example: _UserModule.entities.user.properties.username[placeholder]_
 
 Example: _UserModule.entities.user.validation.NotBlank_,  _UserModule.entities.user.validation.alreadyExists.username_
 
+You would then use _errors.rejectValue( "username", "alreadyExists" );_ after creating the above message code in your message sources.
+
 | *EntityPrefix*.adminMenu
 | Title of the admin menu item for this entity.  Defaults to the singular name of the entity.
 
