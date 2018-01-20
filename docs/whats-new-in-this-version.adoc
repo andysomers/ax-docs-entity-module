@@ -1,6 +1,10 @@
 = What's new in this version?
 :chapter-number: 0
 
+== 3.0.0-SNAPSHOT
+
+* Added support for LocalDate, LocalTime and LocalDateTime to be rendered as DateFormElements.
+
 == 2.2.0.RELEASE
 
 * added <<message-codes,message codes>> for admin menu items
