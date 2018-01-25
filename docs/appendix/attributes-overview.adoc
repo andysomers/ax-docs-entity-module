@@ -96,6 +96,7 @@ Unless a specific `ViewElement` type has been specified, this will force the con
 
 |===
 
+[discrete]
 [[appendix-entity-view-factory-attributes]]
 === EntityViewFactory attributes
 The following table lists commonly present attributes on an `EntityViewFactory`.
