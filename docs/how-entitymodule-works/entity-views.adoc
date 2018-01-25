@@ -117,10 +117,12 @@ The `DefaultEntityViewFactory`:
 The default builders when <<configuring-views,configuring views>> only register `EntityViewProcessor` beans on the factory.
 When an `EntityViewFactory` controller method is being called, it will be translated into one or more processor methods and those method calls will be dispatched to all processors in order.
 
-Two adapter `EntityViewProcessor` classes are available:
+Several adapter `EntityViewProcessor` classes are available:
 
 * use `EntityViewProcessorAdapter` for most use cases, it provides several adapter methods that also allow you to hook into the `ViewElement` generation lifecycle
 * use `SimpleEntityViewProcessorAdapter` if you do not need to hook into the `ViewElement` generation lifecycle
+* use `ExtensionViewProcessorAdapter` if you want to create a custom view/form that represents a so-called extension object
+** the view is part of the entity configuration but often does not manage properties of the actual entity type
 
 NOTE: The `DefaultEntityViewFactory` will not execute any of the rendering related methods if any of the previous methods has marked the `EntityView` as being a redirect.
 

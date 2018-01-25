@@ -77,12 +77,14 @@ You would then use _errors.rejectValue( "username", "alreadyExists" );_ after cr
 
 Example: _UserModule.entities.group.adminMenu.user.groups_
 
+| *EntityPrefix*.adminMenu.views[*viewName*]
+| Name of the tab for the view with that name (if there is a menu item for that view).
+
 | *EntityPrefix*.actions.*actionName*
 | Name of the actions, usually the buttons or links on a page.
 Often you just want to replace these on a global level.
 
-
- Example: _EntityModule.entities.actions.save_, _UserModule.entities.group.actions.cancel_
+Example: _EntityModule.entities.actions.save_, _UserModule.entities.group.actions.cancel_
 
 | *EntityPrefix*.pageTitle.*pageName*
 | Title of the page.

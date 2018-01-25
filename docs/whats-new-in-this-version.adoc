@@ -3,16 +3,29 @@
 
 == 3.0.0-SNAPSHOT
 
-* Added support for LocalDate, LocalTime and LocalDateTime to be rendered as DateFormElements.
+* added support for `LocalDate`, `LocalTime` and `LocalDateTime` to be rendered using `DateTimeFormElement`
+* it is now possible to configure default view element modes (eg. control or readonly rendering) on an `EntityConfiguration`
+** these will be used in all cases where no specific configuration has been configured on property level
+* configuration & view builders support `AttributeRegistrar` for registering or removing attributes
+** using `AttributeRegistrar` is useful if you want to use the owner of the attribute collection (eg. the `EntityConfiguration`)
+** common default registrars can be found in the `EntityAttributeRegistrars` utility class
+* entity views can now have a <<appendix-entity-view-factory-attributes,collection of configuration attributes>>
+** attributes can be used to influence or extend default behaviour, new attributes are available for permission checking and admin menu rendering
+** during view rendering attributes are accessible (and can be modified) using `EntityViewRequest.getConfigurationAttributes()`
+* improvements to view configuration
+** `EntityViewFactoryAttributes.ADMIN_MENU` attribute can be used to specify if a view should have an admin menu item added
+** `EntityViewFactoryAttributes.ACCESS_VALIDATOR` attribute can be used to determine how access to the view should be validated
+* added an `ExtensionViewProcessorAdapter` base class for easily creating a view for a custom extension class (see <<howto-extension-form,how-to>>)
+* added `EntityViewCustomizers` utility class providing some helpers for customizing `EntityViewFactoryBuilder` in a chainable fashion
 
 == 2.2.0.RELEASE
 
 * added <<message-codes,message codes>> for admin menu items
 ** of the entity management section
-** of a group of entities \(defaults to the module name\)
+** of a group of entities (defaults to the module name)
 ** of a single entity type
 * <<entity-query-language-eql,EntityQuery Language>> allows specifying an order by clause or a `Sort` specifier
-* `OptionIterableBuilder` can return a sorted specification by implementing the isSorted\(\) method
+* `OptionIterableBuilder` can return a sorted specification by implementing the `isSorted()` method
 ** if the `OptionGenerator` has no explicit sorting parameter set, it now only sorts if the configured `OptionIterableBuilder` is not sorted
 ** if you specify option values using an EQL statement, the sort specifier of your `EntityQuery` will be taken into account
 * <<entity-query-filtering-on-list-view,EntityQuery filtering>> now supports a basic and advanced mode to support the use of configured property filters and the use of eql statements
