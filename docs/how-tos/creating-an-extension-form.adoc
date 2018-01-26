@@ -79,10 +79,12 @@ static class MyExtensionViewProcessor extends ExtensionViewProcessorAdapter<MyEx
     }
 
     @Override
-    protected void createViewElementBuilders( MyExtension extension,
-                                              EntityViewRequest entityViewRequest,
-                                              EntityView entityView,
-                                              ViewElementBuilderMap builderMap ) {
+    protected void render( MyExtension extension,
+                           EntityViewRequest entityViewRequest,
+                           EntityView entityView,
+                           ContainerViewElementBuilderSupport<?, ?> containerBuilder,
+                           ViewElementBuilderMap builderMap,
+                           ViewElementBuilderContext builderContext ) {
         builderMap.get( SingleEntityFormViewProcessor.LEFT_COLUMN, ColumnViewElementBuilder.class )
                   .add(
                           formGroup()
