@@ -19,6 +19,7 @@
 * added `EntityViewCustomizers` utility class providing some helpers for customizing `EntityViewFactoryBuilder` in a chainable fashion
 * EntityModule no longer creates its own `Validator` instance, the `registerForMvc` related settings have been removed
 ** the validator used by EntityModule is the default MVC validator
+* it's now possible to <<customizing-message-code-prefix,define a different message code prefix>> for module entities using properties
 
 == 2.2.0.RELEASE
 

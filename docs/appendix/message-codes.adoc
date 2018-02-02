@@ -182,6 +182,21 @@ Some message codes support parameters, if so, the following could be available:
 * {2}: label of the entity being modified (if known)
 
 [discrete]
+[[customizing-message-code-prefix]]
+=== Customizing message code prefixes
+The default message code prefix is `MODULE_NAME.entities`.
+It's possible to configure the entity message codes that should be used for a specific module through configuration properties:
+
+[source,yaml]
+----
+entityModule:
+    message-codes:
+        MyModule: prefix to use
+----
+
+You can specify multiple prefixes if you want, just realize this will have a big impact on the number of message codes tried.
+
+[discrete]
 === Debugging message code lookups
 You can trace the message codes being resolved by setting the logger named *com.foreach.across.modules.entity.support.EntityMessageCodeResolver* to _TRACE_ level.
 
