@@ -17,6 +17,8 @@
 ** `EntityViewFactoryAttributes.ACCESS_VALIDATOR` attribute can be used to determine how access to the view should be validated
 * added an `ExtensionViewProcessorAdapter` base class for easily creating a view for a custom extension class (see <<howto-extension-form,how-to>>)
 * added `EntityViewCustomizers` utility class providing some helpers for customizing `EntityViewFactoryBuilder` in a chainable fashion
+* EntityModule no longer creates its own `Validator` instance, the `registerForMvc` related settings have been removed
+** the validator used by EntityModule is the default MVC validator
 
 == 2.2.0.RELEASE
 
