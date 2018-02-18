@@ -20,6 +20,7 @@
 * EntityModule no longer creates its own `Validator` instance, the `registerForMvc` related settings have been removed
 ** the validator used by EntityModule is the default MVC validator
 * it's now possible to <<customizing-message-code-prefix,define a different message code prefix>> for module entities using properties
+* you can now force the required status of a control by setting the `EntityAttributes.REQUIRED_PROPERTY` attribute to `true` or `false` on an `EntityPropertyDescriptor`
 
 == 2.2.0.RELEASE
 

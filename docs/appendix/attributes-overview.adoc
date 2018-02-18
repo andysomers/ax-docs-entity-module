@@ -94,6 +94,9 @@ Will only be used if there is no `OptionGenerator.class` or `OptionIterableBuild
 |Can hold the configuration instance that should be used when generating a select control for this propery.
 Unless a specific `ViewElement` type has been specified, this will force the control type generated to be a select as well.
 
+|`EntityAttributes.PROPERTY_REQUIRED`
+|Should be a `Boolean` value that sets if a control for this property should be marked as required or not.
+
 |===
 
 [discrete]
