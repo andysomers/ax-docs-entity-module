@@ -54,3 +54,53 @@ The EntityModule simply calls the delete method of the `EntityModel`, usually a 
 You will have to take care yourself of complex delete scenarios - like deleting the associations - by either modifying the `EntityModel` or using another mechanism like the `EntityInterceptor`.
 
 ==== creating an additional form view
+
+[[configuring-form-text]]
+==== Configuring form controls text
+A form view usually renders properties in either `ViewElementMode.FORM_WRITE` or `ViewElementMode.FORM_READ`, depending on the fact if a property can be edited or not.
+By default, a property like this would be rendered as a form group (`FormGroupElement` that is usually a combination of the label and the control for the property) or a <<fieldset-properties,fieldset>> (`FieldsetFormElement`).
+
+In `FORM_READ` (readonly) mode, the default form renders only the label of a property.
+You can customize the label value by setting the corresponding message code, for example: `UserModule.entities.user.properties.username=Name of the user`.
+
+In `FORM_WRITE` mode several other message codes will be resolved as well, and if they return values, additional content will be shown on the form.
+
+.Description text
+A description provides additional context for the property being shown.
+It is rendered above the control of a form group, or above the content of a fieldset.
+
+[source=properties]
+----
+UserModule.entities.user.properties.username[description]=The username must be unique.
+----
+
+.Help text
+Help text is rendered below the control of a form group, or below the content of a fieldset.
+It usually provides a (less important) hint for updating the value.
+
+[source=properties]
+----
+UserModule.entities.user.properties.username[help]=Try to pick something you will remember.
+----
+
+.Tooltip text
+Tooltip text is added as a separate icon (question mark) that will only show the actual tooltip when you hover over it with the mouse cursor.
+Tooltips are often used as an alternative for help text.
+The difference is that help text is always visible, whereas to see the tooltip a used will need to take an extra action.
+
+The tooltip icon is added to the label of a form group or to the legend of a fieldset.
+
+[source=properties]
+----
+UserModule.entities.user.properties.username[tooltip]=You will receive an errror when saving if your username is already taken.
+----
+
+By default all message codes allow HTML entities, so you can add additional links or markup to them.
+
+NOTE: In case of a form group you can also manually set the different text components from code.
+Values set from code will take precedence and will never be replaced by the values resolved from message codes.
+
+A more detailed explanation of how message codes are resolved and which codes are possible can be found in <<message-codes,the appendix>>.
+
+
+

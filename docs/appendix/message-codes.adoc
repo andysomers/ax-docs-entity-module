@@ -50,9 +50,25 @@ Example: _UserModule.entities.user.name.plural.inline_
 Example: _UserModule.entities.user.properties.username_
 
 | *EntityPrefix*.properties.*propertyName*[description]
-| Description text for a property.  If not empty this will be rendered in a help block on forms.
+| Description text for a property.
+Used by default for form groups and fieldsets in a writable form configuration.
+If not empty, description text will be added before the control in a form group, and above the content of a fieldset.
 
 Example: _UserModule.entities.user.properties.username[description]_
+
+| *EntityPrefix*.properties.*propertyName*[help]
+| Help text for a property.
+Used by default for form groups and fieldsets in a writable form configuration.
+If not empty, help text will be added after the control in a form group, and below the content of a fieldset.
+
+Example: _UserModule.entities.user.properties.username[help]_
+
+| *EntityPrefix*.properties.*propertyName*[tooltip]
+| Tooltip text for a property.
+Used by default for form groups and fieldsets in a writable form configuration.
+If not empty, the tooltip icon will be added in the label of a form group, and in the legend of a fieldset.
+
+Example: _UserModule.entities.user.properties.username[tooltip]_
 
 | *EntityPrefix*.properties.*propertyName*[placeholder]
 | Placeholder text for a property.  Will be used for certain controle like textbox.

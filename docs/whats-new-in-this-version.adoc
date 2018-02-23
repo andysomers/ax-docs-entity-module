@@ -21,6 +21,10 @@
 ** the validator used by EntityModule is the default MVC validator
 * it's now possible to <<customizing-message-code-prefix,define a different message code prefix>> for module entities using properties
 * you can now force the required status of a control by setting the `EntityAttributes.REQUIRED_PROPERTY` attribute to `true` or `false` on an `EntityPropertyDescriptor`
+* message codes for form groups and fieldsets have been extended, apart from `[description]`, there is now also built-in support for `[help]` and `[tooltip]`
+** this constitutes a minor breaking change in that `[description]` content is now always rendered above the control of a form group.
+Previously this could be different depending on the type of control inside the form group.
+** see the section <<configuring-form-text,configuring form controls text>> for a full explanation of the new message codes
 
 == 2.2.0.RELEASE
 
