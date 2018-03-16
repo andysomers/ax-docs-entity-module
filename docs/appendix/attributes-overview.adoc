@@ -18,6 +18,9 @@ The following table lists commonly present attributes on an `EntityConfiguration
 |`Repository.class`
 |In case of an entity registered through a Spring Data repository.
 
+|`RepositoryInvoker.class`
+|In case of an entity registered through a Spring Data repository.
+
 |`RepositoryFactoryInformation.class`
 |In case of an entity registered through a Spring Data repository.
 
