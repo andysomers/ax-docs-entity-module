@@ -3,6 +3,10 @@
 
 == 3.0.0-SNAPSHOT
 
+* the module dependencies for EntityModule have been optimized for re-use
+** as a result EntityModule no longer transitively pulls in BootstrapUiModule or AdminWebModule
+** when used without BootstrapUiModule, no default `ViewElement` rendering infrastructure will be available
+** when used with BootstrapUiModule but without AdminWebModule, the default views for an entity will never get created and view support (`EntityViewFactory`) will be disabled
 * added support for `LocalDate`, `LocalTime` and `LocalDateTime` to be rendered using `DateTimeFormElement`
 * it is now possible to configure default view element modes (eg. control or readonly rendering) on an `EntityConfiguration`
 ** these will be used in all cases where no specific configuration has been configured on property level

@@ -26,11 +26,11 @@
 
 | AdminWebModule
 | optional
-| Enables auto generated forms for managing the registered entities.
+| Enables generating and customizing forms (views) for managing the registered entities.
 
 | BootstrapUiModule
 | optional
-| Activates support for default Bootstrap based view elements.
+| Activates support for default Bootstrap based `ViewElement` creation and rendering.
 
 |===
 
