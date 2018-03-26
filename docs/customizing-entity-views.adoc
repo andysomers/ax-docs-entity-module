@@ -13,6 +13,8 @@ The following section gives an overview of common customizations for generated e
 All entity names, property names and labels can be customized using message sources.
 For an explanation of the different message codes used, see <<appendix-message-codes,the relevant appendix>>.
 
+See also the section on <<configuring-form-text,configuring form controls text>> for common customizations.
+
 [[customize-page-layout]]
 === Setting page title or changing page layout
 Setting a page title can be done by adding the corresponding message code.
@@ -65,6 +67,7 @@ There are 3 ways you can influence the default behaviour:
 * specify a custom  `viewElementBuilder()` for a given mode
 ** the default building will be ignored and only your custom builder will be used
 
+[[fieldset-properties]]
 === Fieldset properties
 A fieldset is a visual grouping of other properties, inside a block that has a title (legend) and optional description.
 Fieldsets are rendered as a `FieldsetFormElement`.

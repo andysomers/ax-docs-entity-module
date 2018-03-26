@@ -4,5 +4,6 @@
 
 include::adding-a-custom-property-to-an-entity.adoc[]
 include::adding-a-custom-action-to-a-listview.adoc[]
+include::creating-an-extension-form.adoc[]
 
 :!sectnums:

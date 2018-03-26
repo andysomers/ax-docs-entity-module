@@ -50,9 +50,25 @@ Example: _UserModule.entities.user.name.plural.inline_
 Example: _UserModule.entities.user.properties.username_
 
 | *EntityPrefix*.properties.*propertyName*[description]
-| Description text for a property.  If not empty this will be rendered in a help block on forms.
+| Description text for a property.
+Used by default for form groups and fieldsets in a writable form configuration.
+If not empty, description text will be added before the control in a form group, and above the content of a fieldset.
 
 Example: _UserModule.entities.user.properties.username[description]_
+
+| *EntityPrefix*.properties.*propertyName*[help]
+| Help text for a property.
+Used by default for form groups and fieldsets in a writable form configuration.
+If not empty, help text will be added after the control in a form group, and below the content of a fieldset.
+
+Example: _UserModule.entities.user.properties.username[help]_
+
+| *EntityPrefix*.properties.*propertyName*[tooltip]
+| Tooltip text for a property.
+Used by default for form groups and fieldsets in a writable form configuration.
+If not empty, the tooltip icon will be added in the label of a form group, and in the legend of a fieldset.
+
+Example: _UserModule.entities.user.properties.username[tooltip]_
 
 | *EntityPrefix*.properties.*propertyName*[placeholder]
 | Placeholder text for a property.  Will be used for certain controle like textbox.
@@ -63,6 +79,8 @@ Example: _UserModule.entities.user.properties.username[placeholder]_
 | Description text for a validation error message.  Optionally can be suffixed with the specific property name.
 
 Example: _UserModule.entities.user.validation.NotBlank_,  _UserModule.entities.user.validation.alreadyExists.username_
+
+You would then use _errors.rejectValue( "username", "alreadyExists" );_ after creating the above message code in your message sources.
 
 | *EntityPrefix*.adminMenu
 | Title of the admin menu item for this entity.  Defaults to the singular name of the entity.
@@ -75,12 +93,14 @@ Example: _UserModule.entities.user.validation.NotBlank_,  _UserModule.entities.u
 
 Example: _UserModule.entities.group.adminMenu.user.groups_
 
+| *EntityPrefix*.adminMenu.views[*viewName*]
+| Name of the tab for the view with that name (if there is a menu item for that view).
+
 | *EntityPrefix*.actions.*actionName*
 | Name of the actions, usually the buttons or links on a page.
 Often you just want to replace these on a global level.
 
-
- Example: _EntityModule.entities.actions.save_, _UserModule.entities.group.actions.cancel_
+Example: _EntityModule.entities.actions.save_, _UserModule.entities.group.actions.cancel_
 
 | *EntityPrefix*.pageTitle.*pageName*
 | Title of the page.
@@ -176,6 +196,21 @@ Some message codes support parameters, if so, the following could be available:
 * {0}: entity name
 * {1}: entity name inline
 * {2}: label of the entity being modified (if known)
+
+[discrete]
+[[customizing-message-code-prefix]]
+=== Customizing message code prefixes
+The default message code prefix is `MODULE_NAME.entities`.
+It's possible to configure the entity message codes that should be used for a specific module through configuration properties:
+
+[source,yaml]
+----
+entityModule:
+    message-codes:
+        MyModule: prefix to use
+----
+
+You can specify multiple prefixes if you want, just realize this will have a big impact on the number of message codes tried.
 
 [discrete]
 === Debugging message code lookups

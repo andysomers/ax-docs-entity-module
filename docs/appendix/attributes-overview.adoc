@@ -1,6 +1,12 @@
 [[appendix-attributes-overview]]
 == Attributes overview
 
+Some useful (utility) classes for managing attributes for different EntityModule objects:
+
+* `EntityAttributes` contains a variation of common attribute constants and some static helper methods
+* `EntityAttributeRegistrars` contains helper registrar factory methods
+* `EntityViewFactoryAttributes` contains common attribute constants and helper methods, specific for entity views
+
 [discrete]
 [[appendix-entity-configuration-attributes]]
 === EntityConfiguration attributes
@@ -10,6 +16,9 @@ The following table lists commonly present attributes on an `EntityConfiguration
 |Key |Value
 
 |`Repository.class`
+|In case of an entity registered through a Spring Data repository.
+
+|`RepositoryInvoker.class`
 |In case of an entity registered through a Spring Data repository.
 
 |`RepositoryFactoryInformation.class`
@@ -87,5 +96,39 @@ Will only be used if there is no `OptionGenerator.class` or `OptionIterableBuild
 |`SelectFormElementConfiguration.class`
 |Can hold the configuration instance that should be used when generating a select control for this propery.
 Unless a specific `ViewElement` type has been specified, this will force the control type generated to be a select as well.
+
+|`EntityAttributes.PROPERTY_REQUIRED`
+|Should be a `Boolean` value that sets if a control for this property should be marked as required or not.
+
+|===
+
+[discrete]
+[[appendix-entity-view-factory-attributes]]
+=== EntityViewFactory attributes
+The following table lists commonly present attributes on an `EntityViewFactory`.
+
+|===
+|Key |Value
+
+|`EntityViewRegistry.class`
+|The registry the view belongs to, either the `EntityConfiguration` or `EntityAssociation` instance.
+
+|`AllowableAction.class`
+|If present, holds the `AllowableAction` that is required for accessing this view.
+
+|`PersistentEntity.class`
+|In case of an entity registered through a Spring Data repository that exposed `PersistentEntity` information.
+
+|`EntityViewFactoryAttributes.VIEW_NAME`
+|Name of the view under which it is registered in the `EntityViewRegistry`.
+
+|`EntityViewFactoryAttributes.ADMIN_MENU`
+|Optionally contains a `Consumer<EntityAdminMenuEvent>` for creating a menu item for that view.
+See `EntityAttributeRegistrars.adminMenu()` variations for helper factory methods.
+
+|`EntityViewFactoryAttributes.ACCESS_VALIDATOR`
+|Optionally contains a `BiConsumer<EntityViewFactory, EntityViewContext>` that should be used to verify access to the view.
+Usually the default `EntityViewFactoryAttributes.defaultAccessValidator()` is set, which inspects the `AllowableAction.class` attribute.
+
 
 |===
