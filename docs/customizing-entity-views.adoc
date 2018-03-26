@@ -11,14 +11,14 @@ The following section gives an overview of common customizations for generated e
 
 === Changing entity names, property names or other labels
 All entity names, property names and labels can be customized using message sources.
-For an explanation of the different message codes used, see <<message-codes,the relevant appendix>>.
+For an explanation of the different message codes used, see <<appendix-message-codes,the relevant appendix>>.
 
 [[customize-page-layout]]
 === Setting page title or changing page layout
 Setting a page title can be done by adding the corresponding message code.
 All default views automatically add a page title (optionally with sub text) if the corresponding message code resolves a non-empty string.
 
-See the <<message-codes,message codes appendix>> for a list of relevant message codes.
+See the <<appendix-message-codes,message codes appendix>> for a list of relevant message codes.
 
 .Changing the page layout
 Entity views use a `PageContentStructure` for the base structure of the web page.
