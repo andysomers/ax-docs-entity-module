@@ -1,7 +1,7 @@
 = What's new in this version?
 :chapter-number: 0
 
-== 3.0.0-SNAPSHOT
+== 3.0.0.RELEASE
 
 * the module dependencies for EntityModule have been optimized for re-use
 ** as a result EntityModule no longer transitively pulls in BootstrapUiModule or AdminWebModule
