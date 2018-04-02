@@ -40,6 +40,10 @@ Available if the `EntityQueryExecutor.class` attribute is present.
 EntityModule attempts to detect the transaction manager automatically for every Spring Data repository.
 When set, this will enable transaction management for the default create, update and delete views.
 
+|`EntityViewLinkBuilder.class`
+|Holds an `EntityViewLinkBuilder` for the type represented by the `EntityConfiguration`.
+Only available when AdminWebModule is present.
+
 |`OptionGenerator.class`
 |When set on an `EntityConfiguration`, this will be the default generator used to create the set of options that can be selected for a property that points to the entity configuration.
 If all you want to configure is the list of possible options, set the `OptionIterableBuilder.class` attribute instead.

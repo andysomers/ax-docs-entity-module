@@ -35,6 +35,9 @@ Previously this could be different depending on the type of control inside the f
 ** in the new version this is only done if there is also an attribute `EntityPropertyControlNamePostProcessor.PREFIX_CONTROL_NAMES` explicitly set to `true` on the builder context
 *** the latter is done automatically by the `PropertyRenderingViewProcessor` when building the initial controls
 ** though not intentionally breaking, this change can have side effects with controls no longer being prefixed, developers are encouraged to test the custom forms they have
+* new components for linking to entity views have been introduced
+** the old `EntityLinkBuilder` interface and attributes are deprecated, but should still work as before
+** see the chapter on <<entity-view-links,linking to entity views>> for an overview of the new components
 
 == 2.2.0.RELEASE
 

@@ -1,35 +1,187 @@
-=== EntityLinkBuilder
-:chapter-number: 0
+[[entity-view-links]]
+=== Linking to entity views
 
-An `EntityConfiguration` or `EntityAssociation` can have one or more `EntityLinkBuilder` instances registered in its attributes.
-An `EntityLinkBuilder` is used to create application links to management controllers for the entity.
-By default the `EntityModule` will create an `EntityLinkBuilder` for the management pages in admin web if `AdminWebModule` is present, and this link builder will be registered as the attribute with `EntityLinkBuilder` class as key.
+==== Default views
+If AdminWebModul is enabled and you have an auto-detected entity type (eg. from a Spring Data repository), the default views are usually enabled.
+Every view has a base URL path, see the chapter <<default-views,default views>> for more information on the view types.
 
-You can use the `EntityLinkBuilder` directly for example in redirects, often the specific `EntityLinkBuilder` is overridable per view.
-All links the `EntityLinkBuilder` generates are entirely configurable, please refer to the javadoc for all possible settings.
+.Default view paths
+[cols="1,5"]
+|===
+|View name |Path
 
-[source,java,indent=0]
-[subs="verbatim,quotes,attributes"]
+|`listView`
+|`@adminWeb:/entities/{entityName}`
+
+|`view`
+|`@adminWeb:/entities/{entityName}/{id}`
+
+|`createView`
+|`@adminWeb:/entities/{entityName}/create`
+
+|`updateView`
+|`@adminWeb:/entities/{entityName}/{id}/update`
+
+|`deleteView`
+|`@adminWeb:/entities/{entityName}/{id}/delete`
+|===
+
+NOTE: Not all paths work in all situations.
+The path structure is fixed, but it is only active if the corresponding view is also registered.
+
+.Association views
+The default view path for an association depends on the type of association.
+A `LINKED` association will use the same path as the target entity type, usually with the exception of the `listView`.
+An `EMBEDDED` association has a path structure nested below the source entity path.
+
+.Embedded association view paths
+[cols="1,5"]
+|===
+|View name |Path
+
+|`listView`
+|`@adminWeb:/entities/{entityName}/{id}/associations/{associationName}`
+
+|`view`
+|`@adminWeb:/entities/{entityName}/{id}/associations/{associationName}/{associationId}`
+
+|`createView`
+|`@adminWeb:/entities/{entityName}/{id}/associations/{associationName}/create`
+
+|`updateView`
+|`@adminWeb:/entities/{entityName}/{id}/associations/{associationName}/{assocationId}/update`
+
+|`deleteView`
+|`@adminWeb:/entities/{entityName}/{id}/associations/{associationName}/{assocationId}/delete`
+|===
+
+.Custom view
+You can easily register a custom view for an entity type using an `EntityConfigurer`.
+Rendering that view can be done by calling the base entity type or association url, and specifying the `view` query string parameter.
+
+The path segments past the entity type root do not actually matter, you can use any of the default view paths as a base.
+The base type of view being rendered (eg. list view, form view) depends solely on how you defined the view itself.
+
+Suppose you created a custom update form view with name `myCustomView`.
+The following paths would render the exact same view:
+
+* `@adminWeb:/entities/{entityName}/{id}?view=myCustomView`
+* `@adminWeb:/entities/{entityName}/{id}/update?view=myCustomView`
+
+==== Building view links
+An `EntityViewLinks` component is available to generate links to entity views from anywhere in your code.
+This component will inspect the `EntityRegistry` to find corresponding configurations and determine how links should be built.
+
+.Using EntityViewLinks central component
+[source,java]
 ----
-EntityLinkBuilder linkBuilder = entityConfiguration.getAttribute( EntityLinkBuilder.class );
+@Autowired
+EntityViewLinks links;
 
-// Will create a link of the form "/entities/{parent}/{parentId}/update"
-String path = linkBuilder.update( parent );
+// link to a list view
+links.linkTo( MyEntity.class ).toUriString();
+
+// Get the separate link builder
+EntityViewLinkBuilder linkBuilder = links.linkTo( MyEntity.class );
 ----
 
-==== EntityLinkBuilder for associations
-Associations usually also have an `EntityLinkBuilder` registered, it is possible to create links to items that are an association from a parent entity.
-To achieve this you must _scope_ the `EntityLinkBuilder` to the parent entity it belongs to.
+Apart from using the `EntityViewLinks` component globally to build links, the relevant `EntityViewLinkBuilder` for a particular entity type can often be accessed directly:
 
-[source,java,indent=0]
-[subs="verbatim,quotes,attributes"]
+* It is registered as an `EntityConfiguration` attribute of that entity type.
+You can retrieve it using `entityConfiguration.getAttribute( EntityViewLinkBuilder.class )`.
+* When rendering an entity view, the builder is available as the `linkBuilder` property on the current `EntityViewContext`.
+* The `EntityAdminMenuEvent` exposes the builder for the current entity type as a `linkBuilder` property, for direct access when building menus.
+
+.EntityViewLinkBuilder examples
+[source,java]
 ----
-EntityLinkBuilder linkBuilder = entityConfiguration.getAttribute( EntityLinkBuilder.class );
+String url;
+EntityViewContext entityViewContext;
+MyEntity entity;
 
-EntityConfiguration associated = association.getTargetEntityConfiguration();
-EntityLinkBuilder associatedLinkBuilder = association.getAttribute( EntityLinkBuilder.class )
-                                                     .asAssociationFor( linkBuilder, parent );
+// -- Retrieving the link builder for the entity type
+EntityViewLinkBuilder linkBuilder = entityViewContext.getLinkBuilder();
 
-// Will create a link of the form "/entities/{parent}/{parentId}/associations/{associationName}/{childId}/update"
-String path = associatedLinkBuilder.update( child );
+// -- Linking to the list view
+// url: /entities/myEntity
+url = linkBuilder.listView().toUriString();
+
+// -- Linking to the create view
+// url: /entities/myEntity/create
+url = linkBuilder.createView().toUriString();
+
+// -- Linking to the update view
+// url: /entities/myEntity/1/update
+url = linkBuilder.forInstance( entity ).updateView().toUriString();
+
+// -- Linking to a custom view
+// url: /entities/myEntity/1?view=customViewName
+url = linkBuilder.forInstance( entity )
+                 .withViewName( "customViewName" )
+                 .toUriString();
+
+// -- Linking to an association list view
+// url: /entities/myEntity/1/associations/associatedItems/
+url = linkBuilder.forInstance( entity )
+                 .association( AssociatedItem.class )
+                 .toUriString();
+
+// -- Linking to a single associated item update view
+// url: /entities/myEntity/1/associations/associatedItems/2/update
+url = linkBuilder.forInstance( entity )
+                 .association( associatedItem )
+                 .updateView()
+                 .toUriString();
 ----
+
+The `EntityViewLinkBuilder` has a fluent API that allows customizing the URL before converting it to a `String`.
+It also has some short-hand methods for commonly used entity view related parameters.
+Every method call results in a new instance being created, so you will not make inadvertent changes to an existing link builder.
+
+.Useful methods of EntityViewLinkBuilder
+[source,java]
+----
+// append a custom path segment
+.slash( String path )
+// append query parameter
+.withQueryParam( String param, Object... values )
+// set a from URL ('from' query parameter)
+.withFromUrl( String url )
+// set a partial fragment ('_partial' query parameter)
+.withPartial( String fragment )
+// set a custom view name ('view' query parameter)
+.withViewName( String viewName )
+
+// return the unprocessed URI (eg. '@adminWeb:/entities/myEntity')
+.toString()
+// return the processed URI (eg. '/admin/entities/myEntity')
+.toUriString()
+// create a new UriComponentsBuilder with the current settings
+.toUriComponentsBuilder()
+// return as URI
+.toUri()
+// return as UriComponents
+.toUriComponents()
+
+// return the original EntityViewLinks
+.root()
+----
+
+==== Common URL parameters
+The following is a list of query string parameters often used with entity views:
+
+`from`::
+Can hold a URL that should be used as a target when the new operation completes.
+Most often this is the target of the cancel link on a form view.
+See also `EntityViewLinkBuilder#withFromUrl(String)`. +
++
+When building association links, a default `from` value to navigate back to the original entity will usually be added.
+
+`_partial`::
+This can be the identifier of the only fragment of a page that should be rendered.
+Partial view rendering is part of the Across Web features.
+See also `EntityViewLinkBuilder#withPartial(String)`.
+
+`view`::
+Name of the specific custom view that should be rendered.
+See also `EntityViewLinkBuilder#withViewName(String)`.
