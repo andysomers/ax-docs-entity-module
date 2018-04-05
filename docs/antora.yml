@@ -1,0 +1,5 @@
+name: entity-module
+title: "Module: Entity Management"
+version: 3.0.1
+nav:
+- modules/ROOT/nav.adoc

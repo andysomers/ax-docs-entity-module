@@ -4,8 +4,6 @@
 :sectanchors:
 include::variables.adoc[]
 
-include::../ax-docs-shared/copyright.adoc[]
-
 :!sectnums:
 include::introduction.adoc[]
 
