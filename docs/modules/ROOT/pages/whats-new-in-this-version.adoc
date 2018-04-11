@@ -1,3 +1,4 @@
+:page-partial:
 = What's new in this version?
 :chapter-number: 0
 

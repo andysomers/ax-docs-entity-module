@@ -1,3 +1,4 @@
+:page-partial:
 == Integration with other modules
 
 [[integration-adminwebmodule]]

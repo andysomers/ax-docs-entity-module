@@ -1,3 +1,4 @@
+:page-partial:
 = General information
 :chapter-number: 0
 

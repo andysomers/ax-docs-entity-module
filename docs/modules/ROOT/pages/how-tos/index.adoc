@@ -1,3 +1,4 @@
+:page-partial:
 = How-tos
 :sectnums:
 :chapter-number: 0

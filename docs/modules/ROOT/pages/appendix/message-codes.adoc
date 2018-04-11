@@ -1,3 +1,4 @@
+:page-partial:
 [[appendix-message-codes]]
 ## Message codes
 

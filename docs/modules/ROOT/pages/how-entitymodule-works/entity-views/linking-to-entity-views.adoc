@@ -1,3 +1,4 @@
+:page-partial:
 [[entity-view-links]]
 === Linking to entity views
 

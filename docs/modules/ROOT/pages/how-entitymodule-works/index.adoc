@@ -1,3 +1,4 @@
+:page-partial:
 = How EntityModule works
 :sectnums:
 :chapter-number: 0

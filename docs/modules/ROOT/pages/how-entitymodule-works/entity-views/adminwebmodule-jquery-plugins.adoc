@@ -1,3 +1,4 @@
+:page-partial:
 === AdminWebModule JQuery plugins
 :chapter-number: 0
 The default EntityModule web resources add some JQuery based javascript plugins.

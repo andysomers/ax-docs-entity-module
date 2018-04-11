@@ -1,3 +1,4 @@
+:page-partial:
 == Customizing the listview of an entity
 
 [discrete]

@@ -1,3 +1,4 @@
+:page-partial:
 [[form-view]]
 === Form view
 :chapter-number: 0

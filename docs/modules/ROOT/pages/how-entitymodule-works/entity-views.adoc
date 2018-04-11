@@ -1,3 +1,4 @@
+:page-partial:
 [[entity-views]]
 == Entity views
 

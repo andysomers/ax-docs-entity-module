@@ -1,3 +1,4 @@
+:page-partial:
 [[appendix-attributes-overview]]
 == Attributes overview
 

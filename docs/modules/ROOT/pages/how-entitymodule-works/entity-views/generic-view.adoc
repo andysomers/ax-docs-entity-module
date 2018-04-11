@@ -1,3 +1,4 @@
+:page-partial:
 [[generic-view]]
 === custom views
 :chapter-number: 0

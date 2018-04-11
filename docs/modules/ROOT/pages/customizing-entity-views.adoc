@@ -1,3 +1,4 @@
+:page-partial:
 [[customizing-generated-entity-views]]
 = Customizing generated Entity views
 :sectnums:

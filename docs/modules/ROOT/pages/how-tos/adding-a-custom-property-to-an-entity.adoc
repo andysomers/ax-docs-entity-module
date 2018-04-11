@@ -1,3 +1,4 @@
+:page-partial:
 == Adding a custom property to an entity
 
 To add a custom property to an entity, all we need to do is add the property on the EntityPropertyRegistryBuilder of the entity.

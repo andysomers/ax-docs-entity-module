@@ -1,3 +1,4 @@
+:page-partial:
 = Configuring entity types
 :sectnums:
 :chapter-number: 0

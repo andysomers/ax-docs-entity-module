@@ -1,3 +1,4 @@
+:page-partial:
 [[list-view]]
 === List view
 :chapter-number: 0

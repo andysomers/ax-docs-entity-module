@@ -1,3 +1,4 @@
+:page-partial:
 [[entity-query-infrastructure]]
 = EntityQuery infrastructure
 :sectnums:

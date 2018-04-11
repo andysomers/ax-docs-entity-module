@@ -1,3 +1,4 @@
+:page-partial:
 [[howto-extension-form]]
 == Creating an extension form
 :!numbered:
