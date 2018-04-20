@@ -1,0 +1,22 @@
+= Registering entity types
+// manually
+// automatically - implementing a registrar
+// customize the registration process
+// registering associations
+
+=== Automatic registration of entity types
+
+==== Spring Data repositories
+
+===== JPA repositories
+DOCUMENTATION TODO:
+
+ * Embedded ID
+ * register conversion service
+ * add json serializer
+
+[[automatic-attributes]]
+===== Automatic attribute registration
+See the appendix for an <<appendix-entity-configuration-attributes,overview of commonly registered attributes>>.
+
+

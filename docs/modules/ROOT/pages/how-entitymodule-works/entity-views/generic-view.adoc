@@ -1,6 +1,0 @@
-:page-partial:
-[[generic-view]]
-=== custom views
-:chapter-number: 0
-
-TODO: register menu item, register access validator

@@ -1,0 +1,47 @@
+[[fieldset-properties]]
+== Fieldset properties
+A fieldset is a visual grouping of other properties, inside a block that has a title (legend) and optional description.
+Fieldsets are rendered as a `FieldsetFormElement`.
+You can postprocess a group of `ViewElement` instances and move them manually to a `FieldsetFormElement`, or you can set a fieldset as the `ViewElementMode` for a property.
+
+In the latter, because a fieldset is a collection of other properties, you will need to specify which properties make up the fieldset.
+Specifying the properties of fieldset is done by setting the `EntityAttributes.FIELDSET_PROPERTY_SELECTOR` to a valid `EntityPropertySelector`.
+
+The following is an example of manually adding a fieldset property to a form, and moving some properties to it:
+[source,java,indent=0]
+[subs="verbatim,attributes"]
+----
+entities.withType( WebPage.class )
+        .createOrUpdateFormView( fvb -> fvb
+                /**
+                 * First create a new property that is a fieldset
+                 * of the existing url and urlGenerated properties.
+                 * We add this property only to the scope of the
+                 * create or update form view.
+                 */
+                .properties( props -> props
+                        .property( "url-settings" )
+                        .displayName( "URL settings" )
+                        .viewElementType( ViewElementMode.FORM_WRITE, BootstrapUiElements.FIELDSET )
+                        .attribute(
+                                EntityAttributes.FIELDSET_PROPERTY_SELECTOR,
+                                EntityPropertySelector.of( "url", "urlGenerated" )
+                        )
+                )
+                /**
+                 * Because url and urlGenerated are direct members
+                 * of WebPage, we need to ensure they are not rendered
+                 * directly anymore, so we remove them from the form view.
+                 * The new url-settings property will be selected by default
+                 * and in turn will render the url and urlGenerated properties.
+                 *
+                 * If we were to configure the url-settings property as hidden,
+                 * we would have to explicitly include it in the form view as well.
+                 * That would probably be a preferred approach if we have defined
+                 * url-settings in the global property registry for WebPage.
+                 */
+                .showProperties( "*", "~url", "~urlGenerated" )
+        )
+----
+
+NOTE: Properties mapped to an `@Embedded` type will automatically be mapped as a fieldset type.

@@ -1,0 +1,10 @@
+:page-partial:
+= How EntityModule works
+:sectnums:
+:chapter-number: 0
+
+// TODO add documentation for these chapters
+//=== EntityConfiguration and EntityAssociation
+//
+//=== Integration with Spring Data repositories
+

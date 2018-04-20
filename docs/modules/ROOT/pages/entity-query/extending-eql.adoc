@@ -1,0 +1,129 @@
+== Extending EQL
+The `EntityQuery` infrastructure provides some hooks you can use to extend the EQL support with application specific methods.
+
+=== Custom value conversion
+When converting an EQL query all value arguments are first converted to an `EQType` representation before being converted into their respective Java type.
+Actual type conversion is then done via the Spring `ConversionService`.
+To create a custom conversion you can simply register a `Converter` that converts from the relevant `EQType` to the property type.
+
+The following table shows how EQL arguments will be converted to their respective `EQType`:
+
+[cols="1,2",opts=header]
+|===
+
+|Argument value
+|EQType
+
+|name| `EQValue`: name
+
+|'name'
+| `EQString`: name
+
+|(name, 'name')
+| `EQGroup`
+
+ - `EQValue`: name
+
+ - `EQString`: name
+
+|users(name, 'name')
+| `EQFunction`: users
+
+ [arguments]
+
+   - `EQValue`: name
+
+   - `EQString`: name
+
+|===
+
+By default EntityModule registers id-based lookups for all its registered entities.
+So supposing you have an entity `User` with id 1 and you want to query on a property *creator* of type `User`, the following query would work: `creator = 1`.
+
+When building the `EntityQuery` the value 1 would be used as the id to find the `User` instance, and the latter would be used as the argument for the final query.
+If we want to replace the custom behavior and allow the user to be specified by username instead, we could easily register a custom converter.
+
+```java
+public class EQValueToUserConverter implements Converter<EQValue, User>
+{
+    ...
+
+    @Override
+    public User convert( EQValue source ) {
+        return userRepository.findByUsername( source.getValue() );
+    }
+}
+
+...
+
+converterRegistry.addConverter( new EQValueToUserConverter(...) );
+```
+
+This would allow us to execute the queries like `creator = john` or  `creator in (john, jane)`.
+Any type-specific converter will take precedence over the defaults.
+
+> **NOTE**
+The example above would only work if the username can never contain any whitespace.
+If it can, then we would have to specify it as a String instead and write a converter for `EQString` instead of `EQValue`.
+
+
+=== Adding custom functions
+
+An EQL function is represented by a unique name and can optionally take a number of arguments for its execution.
+Adding custom functions is as easy as simply defining a `@Component` that implements the `EntityQueryFunctionHandler` interface.
+All components of this type will be detected and checked when executing an EQL query.
+
+The handler will be called with the required contextual data for the return type requested.
+If you want to use a function to compare a property that has a `Date` type, your function should return a `Date` instance as well.
+
+A single handler can support multiple functions and requested return types.
+
+**Simple EntityQuery function that always returns the String hello**
+```java
+/**
+ * Simple EntityQuery function that always returns the String 'hello'.
+ * Example eql: name = hello() or name in (hello(), 'goodbye')
+ */
+@Component
+public class HelloFunction implements EntityQueryFunctionHandler
+{
+	@Override
+	public boolean accepts( String functionName, TypeDescriptor desiredType ) {
+		return "hello".equals( functionName );
+	}
+
+	@Override
+	public Object apply( String functionName,
+	                     EQType[] arguments,
+	                     TypeDescriptor desiredType,
+	                     EQTypeConverter argumentConverter ) {
+		return "hello";
+	}
+}
+```
+
+=== Custom EQL translation
+You can register an `EntityQueryConditionTranslator` attribute on any entity property.
+If a translator instance is present, it will be called during the parsing phase of an EQL statement into an `EntityQuery`.
+
+**Ensuring a field search is always case insensitive**
+```java
+configuration
+ .withType( Group.class )
+ .properties(
+    props -> props.property( "name" ).attribute( EntityQueryConditionTranslator.class, EntityQueryConditionTranslator.ignoreCase() )
+ )
+```
+
+**Define a search text property that actually searches on other fields**
+```java
+configuration.withType( Note.class )
+             .properties( props -> props.property( "text" )
+                                        .valueFetcher( entity -> "" )
+                                        .propertyType( TypeDescriptor.valueOf( String.class ) )
+                                        .viewElementType( ViewElementMode.CONTROL, BootstrapUiElements.TEXTAREA )
+                                        .attribute( EntityQueryConditionTranslator.class,
+                                                    EntityQueryConditionTranslator.expandingOr( "name", "content" ) )
+                                        .hidden( true )
+		             )
+```

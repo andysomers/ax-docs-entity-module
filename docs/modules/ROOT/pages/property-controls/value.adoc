@@ -1,0 +1,13 @@
+== Customizing *VALUE* mode elements
+
+The `ViewElementMode.VALUE` and `ViewElementMode.LIST_VALUE` are the defaults to provide the output of a property for readonly views.
+Unless a specific `ViewElement` is configured, this will always be a `String` output of the property.
+By default the *mvcConversionService* will be used to convert the property value if no type specific builder is provided.
+
+Apart from providing a custom `ViewElement` you can also modify the rendered output by providing attributes on the `EntityPropertyDescriptor`.
+If you provide a `org.springframework.format.Printer.class` attribute, that implementation will be used for printing the text value.
+Alternatively you can provide a `java.text.Format.class` attribute to be used.
+Note that most default `Format` implementations are not thread-safe, in that case you should wrap them in a `SynchronizedFormat` instance.
+
+All standard view elements will use the `Printer` or `Format` attribute if one of them is present, instead of the default.
+A `Printer` attribute takes precedence over a `Format`.

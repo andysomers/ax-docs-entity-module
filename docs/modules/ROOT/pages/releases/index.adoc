@@ -1,0 +1,43 @@
+= EntityModule releases
+
+[[module-artifact]]
+== Artifact
+
+[source,xml]
+----
+<dependencies>
+    <dependency>
+        <groupId>com.foreach.across.modules</groupId>
+        <artifactId>entity-module</artifactId>
+    </dependency>
+</dependencies>
+----
+
+== Release notes
+
+EntityModule follows a https://semver.org[semantic versioning] scheme.
+
+* xref:releases/3.x.adoc#3-1-0[3.0.1]
+* xref:releases/2.x.adoc#2-2-0[2.2.0]
+* xref:releases/2.x.adoc#2-1-0[2.1.0]
+* xref:releases/2.x.adoc#2-0-0[2.0.0]
+
+[[module-dependencies]]
+== Module dependencies
+
+[cols="1,1,3",options="header"]
+|===
+
+| Module
+| Type
+| Description
+
+| AdminWebModule
+| optional
+| Enables generating and customizing forms (views) for managing the registered entities.
+
+| BootstrapUiModule
+| optional
+| Activates support for default Bootstrap based `ViewElement` creation and rendering.
+
+|===

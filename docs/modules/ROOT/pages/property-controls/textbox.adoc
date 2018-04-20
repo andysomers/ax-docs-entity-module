@@ -1,0 +1,6 @@
+== Customizing textbox elements
+
+`TextboxFormElement.Type` can be set as an attribute on the `EntityPropertyDescriptor`.
+If set and the property is generated as a `TextboxFormElement`, that type will be used.
+
+You can add default post processors to the `TextboxFormElementBuilderFactory` to customize the autodetection.

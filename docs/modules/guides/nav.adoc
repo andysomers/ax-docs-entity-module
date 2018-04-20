@@ -1,0 +1,7 @@
+* xref:index.adoc[Guides & How-tos]
+** General
+*** xref:general/adding-a-custom-property-to-an-entity.adoc[Creating a custom property]
+** List views
+*** xref:list-view/adding-a-custom-action-to-a-listview.adoc[Adding a row action]
+** Form views
+*** xref:form-view/creating-an-extension-form.adoc[Creating a custom form]

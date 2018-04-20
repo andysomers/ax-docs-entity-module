@@ -1,0 +1,37 @@
+
+[#enums-as-entities]
+= Registering an ENUM as an entity
+
+EntityModule supports registration of enums as `EntityConfiguration`.
+When creating an `EntityConfiguration` for an enum, a basic `EntityModule` will get built and all enum properties will be configurable.
+
+Registering enums as entity is mainly useful for configuration of display properties in related entity views.
+
+.Example registering an enum as entity
+[source,java,indent=0]
+[subs="verbatim,quotes,attributes"]
+----
+// Enum class
+public enum Country
+{
+    BE( "Belgium" ),
+    UK( "United Kingdom" ),
+    NL( "Netherlands" );
+
+    private String name;
+
+    Country( String name ) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+}
+
+// Create the EntityConfiguration
+@Override
+public void configure( EntitiesConfigurationBuilder entities ) {
+    entities.create().entityType( Country.class, true ).label( "name" );
+}
+----

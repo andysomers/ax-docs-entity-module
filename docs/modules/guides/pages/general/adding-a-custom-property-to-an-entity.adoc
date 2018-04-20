@@ -1,11 +1,11 @@
-:page-partial:
-== Adding a custom property to an entity
+= Adding a custom property to an entity
 
 To add a custom property to an entity, all we need to do is add the property on the EntityPropertyRegistryBuilder of the entity.
 
 In the following example we will add a property named _customProperty_ of the type `String`, which always returns _myCustomString_.
 
-```java
+[source,java]
+----
 @Override
 public void configure( EntitiesConfigurationBuilder configuration ) {
        configuration.withType(MyEntity.class)
@@ -15,7 +15,7 @@ public void configure( EntitiesConfigurationBuilder configuration ) {
 
                      )
 }
-```
+----
 
 [discrete]
 === Configuring the custom property to expand it's search to other properties
@@ -25,7 +25,8 @@ To do this we can add an a custom `EntityQueryConditionTranslator` under the `En
 
 In the following example, we will perform the query of the _customProperty_ on the _name_ and _content_ properties.
 
-```java
+[source,java]
+----
 @Override
 public void configure( EntitiesConfigurationBuilder configuration ) {
        configuration.withType(MyEntity.class)
@@ -48,7 +49,4 @@ public void configure( EntitiesConfigurationBuilder configuration ) {
 
                      )
 }
-```
-
-
-
+----

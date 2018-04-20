@@ -1,0 +1,22 @@
+== Customizing numeric elements
+
+By default all `Number` type properties will result in a `NumericFormElement` being used which is rendered as a textbox.
+The behavior can be customized by providing a `NumericFormElementConfiguration`.
+A default configuration will only be created for properties annotated with a Spring `@NumberFormat` for type `CURRENCY` or `PERCENT`, if no `NumericFormElementConfiguration.class` or `NumericFormElementConfiguration.Format.class` attribute is present.
+
+If a `NumericFormElementConfiguration` is present a more advanced javascript control will be used in the front-end for value input.
+The same configuration will also be used for rendering the *VALUE* mode elements, formatting the output according to the properties configured.
+
+.Manually configuring percent
+Put a format attribute with value `PERCENT` on the `EntityPropertyDescriptor`.
+This will create a locale specific percentage format with 2 decimals (unless the property type is integer).
+Alternatively use the static `NumericFormElementConfiguration.percent()` factory method to quickly create a localizable format suitable for percentages.
+
+NOTE: If you use Spring number format for `PERCENT` then 1 is expected to match 100%.
+If you manually create a `NumericFormElementConfiguration` it expects 100 to match with 100%.
+You can modify this behavior by setting the `multiplier` property on the configuration.
+
+.Manually configuring currency
+The easiest way to configure a currency is to set a `Currency.class` attribute for the property.
+In that case a locale specific format for that currency will be created.
+Alternatively the same options as for percentages can be used and there is a `NumericFormElementConfiguration.currency()` factory method available.

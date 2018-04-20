@@ -1,8 +1,8 @@
 :page-partial:
 [[entity-view-links]]
-=== Linking to entity views
+= Linking to entity views
 
-==== Default views
+== Default views
 If AdminWebModul is enabled and you have an auto-detected entity type (eg. from a Spring Data repository), the default views are usually enabled.
 Every view has a base URL path, see the chapter <<default-views,default views>> for more information on the view types.
 
@@ -69,7 +69,7 @@ The following paths would render the exact same view:
 * `@adminWeb:/entities/{entityName}/{id}?view=myCustomView`
 * `@adminWeb:/entities/{entityName}/{id}/update?view=myCustomView`
 
-==== Building view links
+== Building view links
 An `EntityViewLinks` component is available to generate links to entity views from anywhere in your code.
 This component will inspect the `EntityRegistry` to find corresponding configurations and determine how links should be built.
 
@@ -168,7 +168,7 @@ Every method call results in a new instance being created, so you will not make 
 .root()
 ----
 
-==== Common URL parameters
+== Common URL parameters
 The following is a list of query string parameters often used with entity views:
 
 `from`::

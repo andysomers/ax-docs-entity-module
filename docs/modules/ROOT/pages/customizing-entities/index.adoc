@@ -76,70 +76,15 @@ If you do not wish to use the *#label* property at all as default entity label, 
 NOTE: As *#label* is a generated property, sorting is not enabled by default.
 If you configure the label using an existing property, the sortable attribute will be copied as well and sorting on label will be possible.
 
+=== Customizing entity validation
 
-=== Creating an EntityConfiguration manually
+By default annotation validation is performed on all entities.
+Customizing validation can be done by simply specifying a `Validator` bean that supports the specific entity type.
+You can use the `EntityValidatorSupport` as a base class to extend the default annotation based entity validation.
 
-==== Attributes to configure
+If more than one `Validator` could be applied, you will manually have to set the `Validator.class` attribute on the `EntityConfiguration` to the correct one.
 
-Some attributes are mandatory, others are optional but will often impact how much functionality is available out of the box.
-You can configure any attribute you like, see the section on <<automatic-attributes,automatic registration>> for a list of common attributes provided by other registrars.
 
-==== EntityQueryExecutor
-
-In order for generated views to work automatically, an `EntityConfiguration` should have an `EntityQueryExecutor` attribute.
-The `EntityQueryExecutor` is a generic interface that supports the simple `EntityQuery` abstraction for fetching entities from the backing repository.
-Default implementations exist for `JpaSpecificationExecutor` and `QueryDslPredicateExecutor`.
-
-==== Registering an ENUM as entity
-
-EntityModule supports registration of enums as `EntityConfiguration`.
-When creating an `EntityConfiguration` for an enum, a basic `EntityModule` will get built and all enum properties will be configurable.
-
-Registering enums as entity is mainly useful for configuration of display properties in related entity views.
-
-.Example registering an enum as entity
-[source,java,indent=0]
-[subs="verbatim,quotes,attributes"]
-----
-// Enum class
-public enum Country
-{
-    BE( "Belgium" ),
-    UK( "United Kingdom" ),
-    NL( "Netherlands" );
-
-    private String name;
-
-    Country( String name ) {
-        this.name = name;
-    }
-
-    public String getName() {
-        return name;
-    }
-}
-
-// Create the EntityConfiguration
-@Override
-public void configure( EntitiesConfigurationBuilder entities ) {
-    entities.create().entityType( Country.class, true ).label( "name" );
-}
-----
-
-=== Automatic registration of entity types
-
-==== Spring Data repositories
-
-===== JPA repositories
-DOCUMENTATION TODO:
-
- * Embedded ID
- * register conversion service
- * add json serializer
-
-[[automatic-attributes]]
-===== Automatic attribute registration
-See the appendix for an <<appendix-entity-configuration-attributes,overview of commonly registered attributes>>.
-
+// todo: entity names
 
 

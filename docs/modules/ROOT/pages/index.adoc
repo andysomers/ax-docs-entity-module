@@ -5,36 +5,15 @@
 include::variables.adoc[]
 
 :!sectnums:
-include::introduction.adoc[]
+[discrete]
+====== Authors
 
-include::whats-new-in-this-version.adoc[]
-include::general-information.adoc[]
-//include::general-information.adoc#module-artifact[]
-//include::general-information.adoc#module-dependencies[]
-//include::general-information.adoc#module-settings[]
-include::how-entitymodule-works/index.adoc[]
-//include::how-entitymodule-works/entity-views.adoc[]
-//include::how-entitymodule-works/entity-views/list-view.adoc[]
-//include::how-entitymodule-works/entity-views/form-view.adoc[]
-//include::how-entitymodule-works/entity-views/generic-view.adoc[]
-//include::how-entitymodule-works/entity-views/adminwebmodule-jquery-plugins.adoc[]
-//include::how-entitymodule-works/entity-views/linking-to-entity-views.adoc[]
+Arne Vandamme, Steven Gentens
 
-include::entity-associations.adoc[]
+== About
 
-include::how-entitymodule-works/integration-with-other-modules.adoc[]
+The EntityModule is responsible for automatically generating an administration UI of entities built.
+It provides infrastructure to define an entity model and to generate default web pages based on that model.
+By default all Spring Data repositories are introspected and corresponding entity models are built for every repository.
 
-:!sectnums:
-
-include::customizing-entity-views.adoc[]
-:!sectnums:
-
-include::how-entitymodule-works/configuring-entity-types.adoc[]
-:!sectnums:
-
-include::entityquery-infrastructure.adoc[]
-:!sectnums:
-
-include::appendix/index.adoc[]
-
-include::how-tos/index.adoc[]
+Module website: {entity-module-url}

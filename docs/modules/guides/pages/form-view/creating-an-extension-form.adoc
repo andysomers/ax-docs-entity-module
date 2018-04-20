@@ -1,22 +1,26 @@
-:page-partial:
 [[howto-extension-form]]
-== Creating an extension form
-:!numbered:
+= Creating a custom form view
+
+In this how-to we'll show you how to create an entity view with a form backed by a custom model object.
+
+What we'll do:
+
+* [*] create a form model object representing our form data
+* [*] creating an EntityViewProcessor that fetches, validates, saves and renders our model
+* [*] add a custom form view and have it show up as a separate tab item
+
+== Some background
 
 Creating an additional form view for an entity is a very common action.
 Often you want to manage data that does not actually represent entity type properties.
-You can attach these to an existing (or separate) form by registering an extension on the `EntityViewCommand`.
+You can attach this data to an existing (or separate) form by registering an extension on the `EntityViewCommand`.
 
 Using extensions has the advantage that data binding and default (annotation based) validation will happen automatically.
 
 NOTE: If you add an extension to the default entity form (having the `SaveEntityViewProcessor`) and the extension has errors upon validation, that will count as global validation and will block saving the entity.
-This makes for a very easy way to extend a default properties form with custom behaviour.
+This makes for a very easy way to extend a default form with custom behaviour.
 
-In this how-to we'll show you how to create a custom view with a form backed by a custom model object registered as an extension.
-The form will show up as a separate tab on the entities where it's registered.
-
-[discrete]
-=== Create the extension class
+== Create the extension class
 The extension class is the model for our form and will be validated when the form is submitted.
 
 .Extension class
@@ -34,8 +38,7 @@ static class MyExtension
 }
 ----
 
-[discrete]
-=== Create an EntityViewProcessor for the extension
+== Create an EntityViewProcessor for the extension
 Render the extension on the form and manage the form data.
 Annotation based validation will be done on form POST.
 
@@ -120,8 +123,7 @@ static class MyExtensionViewProcessor extends ExtensionViewProcessorAdapter<MyEx
 }
 ----
 
-[discrete]
-=== Register the view with our processor
+== Register the view with our processor
 The view itself can be registered under any name on the entity configuration.
 The view name will be used in the message code resolving.
 
@@ -142,8 +144,7 @@ entities.withType( ... )
         );
 ----
 
-[discrete]
-=== Translate the menu item title
+== Translate the menu item title
 Set the right message code for the specific view menu item.
 
 [source,properties]

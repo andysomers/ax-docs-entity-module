@@ -1,0 +1,10 @@
+[[module-settings]]
+== Module settings
+
+EntityModule supports the following configuration properties:
+[source,properties]
+----
+# Customize the message code prefix that should be used for entity messages
+# for all entities from that module
+entityModule.message-codes[MODULE_NAME] = PREFIX
+----
