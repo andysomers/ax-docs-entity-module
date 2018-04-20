@@ -26,7 +26,8 @@
 ** xref:building-views/form-view.adoc[Creating a form view]
 ** xref:building-views/generic-view.adoc[Creating a custom view]
 ** xref:building-views/linking-to-entity-views.adoc[Linking to entity views]
-** xref:building-views/customize-property-rendering.adoc[Customizing property rendering]
+** xref:building-views/customizing-views.adoc[Customizing views]
+*** xref:building-views/customizing-views.adoc#view-processors[View processors]
 ** xref:building-views/localization.adoc[Localization & text messages]
 
 * xref:property-controls/index.adoc[Entity property controls]
