@@ -57,6 +57,9 @@ Annotation based validation will be done on form POST.
  */
 static class MyExtensionViewProcessor extends ExtensionViewProcessorAdapter<MyExtension>
 {
+    @Autowired
+    private CustomEntityValidator customEntityValidator;
+    
     @Override
     protected MyExtension createExtension( EntityViewRequest entityViewRequest,
                                                 EntityViewCommand command,
@@ -80,6 +83,11 @@ static class MyExtensionViewProcessor extends ExtensionViewProcessorAdapter<MyEx
                                         .build()
                              );
         }
+    }
+
+	@Override
+	protected void validateExtension( MyExtension extension, Errors errors, HttpMethod httpMethod, EntityViewRequest entityViewRequest ) {
+        customEntityValidator.validate( extension, errors );
     }
 
     @Override
