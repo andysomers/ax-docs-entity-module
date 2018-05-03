@@ -18,8 +18,8 @@ entities.withType( Group.class )
 **Activating basic mode + advanced mode EntityQuery filter**
 ```java
 entities.withType( Group.class )
-        .listView( lvb -> lvb.entityQueryFilter( true )
-                             .showProperties( "name", "active" ) );
+        .listView( lvb -> lvb.entityQueryFilter( 
+                            eqf -> eqf.showProperties( "name", "active" ) ) );
 ```
 
 By default both basic and advanced mode are available, and the UI allows switching between them. All options are configurable on the `EntityQueryFilterConfiguration`.
