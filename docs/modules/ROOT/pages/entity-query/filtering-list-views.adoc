@@ -55,7 +55,7 @@ entities.withType( WebCmsArticle.class )
 
 == EQL predicate on list view
 List views also support a base predicate to be configured as an EQL statement.
-This base predicate will always be applied to the query being executed if it uses the `DefaultEntityFetchingViewProcessor` or the `EntityQueryFilterProcessor`.
+This base predicate will always be applied to the query being executed.
 
 **Ensure deleted (flag) items are never shown**
 ```java
