@@ -5,3 +5,4 @@
 *** xref:list-view/adding-a-custom-action-to-a-listview.adoc[Adding a row action]
 ** Form views
 *** xref:form-view/creating-an-extension-form.adoc[Creating a custom form]
+*** xref:form-view/creating-a-fileupload-form.adoc[Creating a fileupload form]
