@@ -18,8 +18,8 @@ entities.withType( Group.class )
 **Activating basic mode + advanced mode EntityQuery filter**
 ```java
 entities.withType( Group.class )
-        .listView( lvb -> lvb.entityQueryFilter( true )
-                             .showProperties( "name", "active" ) );
+        .listView( lvb -> lvb.entityQueryFilter( 
+                            eqf -> eqf.showProperties( "name", "active" ) ) );
 ```
 
 By default both basic and advanced mode are available, and the UI allows switching between them. All options are configurable on the `EntityQueryFilterConfiguration`.
@@ -55,7 +55,7 @@ entities.withType( WebCmsArticle.class )
 
 == EQL predicate on list view
 List views also support a base predicate to be configured as an EQL statement.
-This base predicate will always be applied to the query being executed if it uses the `DefaultEntityFetchingViewProcessor` or the `EntityQueryFilterProcessor`.
+This base predicate will always be applied to the query being executed.
 
 **Ensure deleted (flag) items are never shown**
 ```java
