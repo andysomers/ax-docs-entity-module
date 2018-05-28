@@ -2,7 +2,6 @@
 Stijn Vanhoof
 
 [abstract]
-== What is this how-to about?
 This how-to will cover the basics of https://across-docs.foreach.be/across-standard-modules/EntityModule/2.1.0.RELEASE/reference/#_creating_an_additional_form_view[creating an additional formView] and managing the
 https://across-docs.foreach.be/across-standard-modules/EntityModule/2.1.0.RELEASE/reference/#generic-view[custom view].
 
@@ -12,7 +11,6 @@ A short summary about the topics discussed:
 * `Create your own formView on a entity`
 * `Register a new property on a formView that is rendered by entityModule`
 
-:numbered:
 == Create our file dto class
 First we have to create a class that can act as a dto object for our uploaded file.
 We can also use this to set our validation annotations if desired.
@@ -21,13 +19,6 @@ We can also use this to set our validation annotations if desired.
 [source,java,indent=0]
 [subs="verbatim,quotes,attributes"]
 ----
-import be.persgroep.advantages.web.application.domain.uniqueCode.validator.FileExtension;
-import lombok.Getter;
-import lombok.Setter;
-import org.springframework.web.multipart.MultipartFile;
-
-import javax.validation.constraints.NotNull;
-
 @Setter
 @Getter
 public class FileRequest {
@@ -44,9 +35,6 @@ Just create an empty viewProcessor for now, we will implement it on the next ste
 [source,java,indent=0]
 [subs="verbatim,quotes,attributes"]
 ----
-import org.springframework.stereotype.Component;
-import com.foreach.across.modules.entity.views.processors.EntityViewProcessorAdapter;
-
 @Component
 public class FileUploadViewProcessor extends EntityViewProcessorAdapter {
 
@@ -70,7 +58,7 @@ class DummyEntityConfiguration implements EntityConfigurer {
     public void configure(EntitiesConfigurationBuilder entities) {
         entities.withType(DummyEntity.class)
             // Attach our custom  formView
-            .formView("upload", fvb -> fvb.viewProcessor(fileUploadViewProcessor)
+            .formView("upload", fvb -> fvb.viewProcessor(fileUploadViewProcessor) # <1>
 
                 // Create a new property files that will represent our file upload element
                 .properties(props -> props.property("files")
@@ -104,7 +92,7 @@ class DummyEntityConfiguration implements EntityConfigurer {
  }
 ----
 
-The above code registers a new formView with the name upload and add's our created but not yet implemented viewHelper
+<1> The above code registers a new formView with the name upload and add's our created but not yet implemented viewHelper
 to our formView.
 
 Then we register a new property files that we wil use to represent our file upload.
