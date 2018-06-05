@@ -75,8 +75,10 @@ This is especially useful for manually creating associations.
 An `EntityAssociation` can have an `EntityFactory.class` attribute set that contains the `EntityFactory` that should be used for creating associated items.
 If no factory is set as attribute on the association, the default `EntityFactory` of the target configuration will be used.
 
-If there is an `EntityFactory` attribute set on the association, that factory will be used when creating a new associated entity instance.
-The `createNew()` factory method will get called with the parent entity (for whom an associated item is being created) as single parameter.
+If there is an `EntityFactory` attribute set on the association, that factory will be used:
+
+* when creating a DTO of an entity instance: the `createDto()` factory method
+* when creating a new associated entity instance: the `createNew()` factory method will get called with the parent entity (for whom an associated item is being created) as single method argument.
 
 
 
