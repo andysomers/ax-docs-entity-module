@@ -1,6 +1,8 @@
 [[howto-extension-form]]
 = Creating a custom form view
 
+[abstract]
+--
 In this how-to we'll show you how to create an entity view with a form backed by a custom model object.
 
 What we'll do:
@@ -8,6 +10,7 @@ What we'll do:
 * [*] create a form model object representing our form data
 * [*] creating an EntityViewProcessor that fetches, validates, saves and renders our model
 * [*] add a custom form view and have it show up as a separate tab item
+--
 
 == Some background
 

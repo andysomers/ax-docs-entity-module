@@ -1,15 +1,17 @@
-= Howto: Add a custom formView with a fileUpload
+//TODO refactor to ExtensionViewProcessor
+= How-to: Add a custom form with a file upload
 Stijn Vanhoof
 
 [abstract]
-This how-to will cover the basics of https://across-docs.foreach.be/across-standard-modules/EntityModule/2.1.0.RELEASE/reference/#_creating_an_additional_form_view[creating an additional formView] and managing the
-https://across-docs.foreach.be/across-standard-modules/EntityModule/2.1.0.RELEASE/reference/#generic-view[custom view].
+--
+This how-to will cover the basics of xref:form-view/creating-an-extension-form.adoc#howto-extension-form[creating an additional form view].
 
 A short summary about the topics discussed:
 
-* `Create a fileUpload with validation`
-* `Create your own formView on a entity`
-* `Register a new property on a formView that is rendered by entityModule`
+* [*] Create a file upload with validation
+* [*] Create your own form view on a entity
+* [*] Register a new property on a form view that is rendered by EntityModule
+--
 
 == Create our file dto class
 First we have to create a class that can act as a dto object for our uploaded file.
@@ -27,115 +29,128 @@ public class FileRequest {
 }
 ----
 
-== Register a new formView on our entity
-To create our own formView we have to create a new viewProcessor that extends the `EntityViewProcessorAdapter`.
-Just create an empty viewProcessor for now, we will implement it on the next steps.
-
-.FileUploadViewProcessor.java - Empty viewprocessor for now
-[source,java,indent=0]
-[subs="verbatim,quotes,attributes"]
-----
-@Component
-public class FileUploadViewProcessor extends EntityViewProcessorAdapter {
-
-}
-----
-
-When we have created our new viewProcessor https://across-docs.foreach.be/across-standard-modules/EntityModule/2.1.0.RELEASE/reference/#configuring-views[we can register it on the configuration] of our entity in a `EntityConfigurer`.
-
-NOTE: Find out more about how to configure entity types https://across-docs.foreach.be/across-standard-modules/EntityModule/2.1.0.RELEASE/reference/#_configuring_entity_types[here].
+== Register a new form view on an entity
+To create a form view, all we have to do is register modify the configuration of our entity in an `EntityConfigurer`.
 
 .DummyEntityConfiguration.java - Entity configuration for our dummy entity
 [source,java,indent=0]
 [subs="verbatim,quotes,attributes"]
 ----
 @Configuration
-@RequiredArgsConstructor
 class DummyEntityConfiguration implements EntityConfigurer {
-    private final FileUploadViewProcessor fileUploadViewProcessor;
 
     @Override
     public void configure(EntitiesConfigurationBuilder entities) {
         entities.withType(DummyEntity.class)
-            // Attach our custom  formView
-            .formView("upload", fvb -> fvb.viewProcessor(fileUploadViewProcessor) # <1>
-
-                // Create a new property files that will represent our file upload element
-                .properties(props -> props.property("files") # <2>
-
-                    // Configure a label for the file input field # <3>
-                    .displayName("Csv file")
-
-                    // Set the right propertyType
-                    .propertyType(MultipartFile[].class) # 
-
-                    /** Set the right viewElementBuilder so entityModule knows how to render
-                    * our file upload field. Note that we didn't use .viewElementType that will autodetect
-                    * the viewElementBuilder to use.
-                    */
-                    .viewElementBuilder( # <4>
+            .formView("upload", fvb -> fvb
+                .properties(props -> props.property("files") # <1>
+                    .displayName("Csv file") # <2>
+                    .viewElementBuilder( # <3>
                         ViewElementMode.CONTROL, BootstrapUiBuilders.file()
                             .controlName("extensions[upload].files")
                     )
-
-                    // We need our new property to be writable
-                    .writable(true) # <5>
+                    .writable(true) # <4>
                 )
-                // We want to be sure our property is shown on our formView
                 .showProperties("files")
-
-                // Remove the default viewProcessor SaveEntityViewProcessor so that only our form get's saved
-                // and not the attached entity
                 .removeViewProcessor(SaveEntityViewProcessor.class.getName()) # <5>
             );
     }
  }
 ----
 
-<1> The above code registers a new formView with the name upload and add's our created but not yet implemented viewHelper
-to our formView.
+<1> A new form view is registered with the name upload which uses our created but not yet implemented view processor.
+<1> A new property `files` is registered which we will use to represent the file upload.
+<2> By configuring a display name we modify the label that will be rendered.
+<3> A `ViewElementBuilder` is provided to override how the control should be rendered.
+Since we're creating a file upload form we'll override the builder to ensure that our rendered `ViewElement` is a file input.
+To bind our form control to the `FileRequest#files` property, we'll also provide a control name.
+In this case we'll be mapping to an `extension` which will be configured in the view processor later on.
+<4> The end user should be able to select a file, so we set the property to writable.
+<5> When a form is submitted, we expect our data to be saved, which is done by the `SaveEntityViewProcessor`.
+In this case, we merely want to receive the uploaded files and then process them instead of saving the attached entity, so we'll remove this specific processor.
 
-<2> Then we register a new property files that we wil use to represent our file upload.
-<3> We set a `displayName` we map the property to our `FileRequest` object we created earlier by setting it's `propertyType`.
-
-<4> Across provides a default File control view that we can use by using the `viewElementBuilder`. We want to customize
-the control and use the file control provided by BootstrapUiBuilders.file(). The `BootstrapUiBuilders` facade provides a lot of default viewElements that you can use. As you can see in the above code we set the `controlName` (Name attribute) to a specific value and this is required to register the control as an extension.
-Read more about extensions https://across-docs.foreach.be/across-standard-modules/EntityModule/2.1.0.RELEASE/reference/#_entityviewcommand[here].
-In short extensions is map on the `EntityViewCommand` that we can use to render and validate additional elements.
-Later in our newly created `FileUploadViewProcessor` we add the extension but for now we set the name of our element to the right value so the field value get's binded automatically. In the next section you will find out how we actually add the files
-property to the extension map.
-
-<5> After we set our newly created property to be writable and show it on our formView there is one more thing we want to do.
-By default when we save our formView the corresponding entity (DummyEntity) is also saved by the `SaveEntityViewProcessor` that is registed by default. If we don't want this behavior we can just remove the `viewProcessor`.
+NOTE: Take a look at xref:ROOT:customizing-entities/index.adoc#_configuring_entity_types[Configuring entity types] for more in depth knowledge on configuring entities.
 
 == Access the view
 
-Now that our custom `formView` has been registered we can access it by going to the following url admin/entities/dummyEntity?view=upload.
-The path is bassicly the path of our `DummyEntity` where we registered our view in. In addition we provide a get paramter
-view with the name of our view which is upload.
+Now that our custom form view has been registered we can access it by navigating to the following path on our application: `admin/entities/dummyEntity?view=upload`.
+This path is the base path to the `DummyEntity` type, for which we have just configured an additional form view with the name `upload`.
+By adding the additional `view` parameter we can specify which view should be rendered.
 
+NOTE: You can find out more about how entity views work xref:ROOT:building-views/index.adoc#_how_entity_views_work[here].
 
-== Create your own formView on a entity
-We need to override 3 methods of the EntityViewProcessorAdapter. In the first method we add
-the file upload to the extension map. Remember that we used .controlName("extensions[upload].files") in our entityConfigurer.
-We now use the same mapKey to register our files property to the extension map so our rendering & validation & value binding is handled.
+== Handling our form submit.
 
-NOTE: You can find out more about how entity views work https://across-docs.foreach.be/across-standard-modules/EntityModule/2.1.0.RELEASE/reference/#_how_entity_views_work[here].
+Thus far we've created a custom form view which renders the required controls.
+The next step is to handle the uploaded file, so we'll create a view processor that extends the `ExtensionViewProcessorAdapter`.
+An `ExtensionViewProcessorAdapter` is a specific `EntityViewProcessorAdapter` which makes it easier to work with extensions.
 
-.FileUploadViewProcessor.java - Add the extension
+NOTE: Extensions are a map of additional properties on the `EntityViewCommand` and can be used to render/receive additional data.
+Extensions are automatically bound to the `EntityViewCommand` when submitted, during which base validation is applied as well.
+To learn more about extensions, take a look at xref:ROOT:building-views/index.adoc#__entityviewcommand[EntityViewCommand].
+
+We'll take care of handling the form data in four steps:
+
+* Ensuring that the data is bound to the aforementioned DTO (`FileRequest`) when the form is submitted.
+* Registering the view processor on the configuration.
+* Ensuring that our form is configured for multi-part data.
+* Processing the received data.
+
+First off we'll create the processor.
+
+.FileUploadViewProcessor.java
 [source,java,indent=0]
 [subs="verbatim,quotes,attributes"]
 ----
-    @Override
-    public void initializeCommandObject(EntityViewRequest entityViewRequest, EntityViewCommand command, WebDataBinder dataBinder) {
-        command.addExtension("upload", new FileRequest());
+@Component
+public class FileUploadViewProcessor extends ExtensionViewProcessorAdapter<FileRequest> {
+
+    @Override # <1>
+    protected String extensionName() {
+        return "upload";
     }
+
+    @Override # <2>
+    protected FileRequest createExtension(EntityViewRequest entityViewRequest, EntityViewCommand command, WebDataBinder dataBinder) {
+        return new FileRequest();
+    }
+
+}
 ----
+<1> We provide the name of the extension that is registered in this processor.
+This will make sure that `extension[upload]` will be mapped to the entity defined in this processor.
+<2> In this case, we want to map the submitted form data to a `FileRequest` object, so we'll register a new instance to which the form data can be bound.
 
-We have to make our form multiPart so we look up the form by using our ContainerViewElement and then
-we can set set the multiPart encryption on the FormViewElement
 
-.FileUploadViewProcessor.java - Add multiPartForm to our form
+Now that we have our view processor we can add it to our configuration class.
+
+.DummyEntityConfiguration.java - Abbreviated configuration
+[source,java,indent=0]
+[subs="verbatim,quotes,attributes"]
+----
+@Configuration
+@RequiredArgsConstructor
+class DummyEntityConfiguration implements EntityConfigurer {
+
+    private final FileUploadViewProcessor fileUploadViewProcessor; # <1>
+
+    @Override
+    public void configure(EntitiesConfigurationBuilder entities) {
+        entities.withType(DummyEntity.class)
+            .formView("upload", fvb -> fvb.viewProcessor(fileUploadViewProcessor) # <1>
+                .properties(props -> props.property("files")
+                   // ...
+                )
+                // ...
+            );
+    }
+ }
+----
+<1> The view processor is wired and added to the upload form view.
+
+Next up, we'll ensure that our form is configured as a multipart form, by setting the encryption type on the form that is currently rendered.
+
+.FileUploadViewProcessor.java - Set the encryption type of the form
 [source,java,indent=0]
 [subs="verbatim,quotes,attributes"]
 ----
@@ -146,51 +161,39 @@ we can set set the multiPart encryption on the FormViewElement
     }
 ----
 
-The last method we override is the handle our form submission.
-We first check if there aren't any errors, then handle the fileUpload.
+Finally we'll handle our form submission.
 
-You can set your own feedback messages and use the https://across-docs.foreach.be/across-standard-modules/EntityModule/2.1.0.RELEASE/reference/#_entitylinkbuilder[EntityLinkBuilder] to generate
-the right url's for redirection.
-
-.FileUploadViewProcessor.java - Handle the submit
+.FileUploadViewProcessor.java - Handle form submission
 [source,java,indent=0]
 [subs="verbatim,quotes,attributes"]
 ----
     @Override
-    protected void doPost(EntityViewRequest entityViewRequest, EntityView entityView, EntityViewCommand command, BindingResult bindingResult) {
-        if (!bindingResult.hasErrors()) {
-            EntityViewContext entityViewContext = entityViewRequest.getEntityViewContext();
+    protected void doPost(FileRequest extension, BindingResult bindingResult, EntityView entityView, EntityViewRequest entityViewRequest) {
+        if (!bindingResult.hasErrors()) { # <1>
+            MultipartFile[] files = file.getFiles(); # <2>
 
-            FileRequest file = command.getExtension("upload", FileRequest.class);
-            Advantage advantage = entityViewRequest.getEntityViewContext().getParentContext().getEntity(Advantage.class);
-            MultipartFile[] files = file.getFiles();
-
-            if (files != null && files.length > 0) {
-                InputStream is = null;
-                try {
-                    is = files[0].getInputStream();
-
-                    BufferedReader br = new BufferedReader(new InputStreamReader(is));
-                    br.lines().forEach(line -> handleLineMethod(line)));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-                entityViewPageHelper.addGlobalFeedbackAfterRedirect(entityViewRequest, Style.SUCCESS,
-                    "feedback.entityUpdated");
-
-                if (entityViewRequest.hasPartialFragment()) {
-                    entityView.setRedirectUrl(
-                        UriComponentsBuilder.fromUriString(entityViewContext.getLinkBuilder().update(uniqueCodes))
-                            .queryParam(WebTemplateInterceptor.PARTIAL_PARAMETER, entityViewRequest.getPartialFragment())
-                            .toUriString()
-                    );
-                } else {
-                    entityView.setRedirectUrl(entityViewContext.getLinkBuilder().overview());
-                }
-
+            // ... Handle the submitted files.
         }
     }
 ----
+<1> Only handle data if no validation errors have occurred.
+<2> Retrieve the upload files so they can be handled.
 
+[TIP]
+====
+It's also possible to quickly add a feedback message and/or set a redirect url after handling the data.
 
+.Example setting a feedback message
+```
+// The EntityViewPageHelper is a bean that can be directly wired into the processor.
+entityViewPageHelper.addGlobalFeedbackAfterRedirect(entityViewRequest, Style.SUCCESS, "feedback.entityUpdated");
+```
+
+.Example setting a redirect url
+```
+entityView.setRedirectUrl("/some-url");
+```
+
+You can also use the xref:ROOT:building-views/linking-to-entity-views.adoc[`EntityLinkBuilder`] to generate a URL to one of the configured entity views.
+
+====
