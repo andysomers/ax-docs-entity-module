@@ -27,7 +27,7 @@ If no _viewElementType_ has been specified, a default type will be determined: a
 A select control being generated will be a https://silviomoreto.github.io/bootstrap-select/[bootstrap-select] with default configuration.
 You can customize the select box configuration by manually setting a `SelectFormElementConfiguration` attributes.
 
-See the {bootstrap-ui-module-url}[BootstrapUiModule documentation] for all configurable properties.
+See the {url-BootstrapUiModule}[BootstrapUiModule documentation] for all configurable properties.
 
 If no _viewElementType_ has been specified, but a `SelectFormElementConfiguration` attribute is present, the resulting control will be a select box.
 

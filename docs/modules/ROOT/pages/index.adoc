@@ -16,4 +16,4 @@ The EntityModule is responsible for automatically generating an administration U
 It provides infrastructure to define an entity model and to generate default web pages based on that model.
 By default all Spring Data repositories are introspected and corresponding entity models are built for every repository.
 
-Module website: {entity-module-url}
+Module website: {url-EntityModule}

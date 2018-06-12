@@ -27,7 +27,7 @@ See the <<appendix-message-codes,message codes appendix>> for a list of relevant
 Entity views use a `PageContentStructure` for the base structure of the web page.
 The `PageContentStructure` is available as a request scoped bean, but can also be retrieved from the `EntityViewRequest`.
 
-See the {admin-web-module-url}#page-content-structure[AdminWebModule reference documentation] for a basic explanation of `PageContentStructure`.
+See the {url-AdminWebModule}#page-content-structure[AdminWebModule reference documentation] for a basic explanation of `PageContentStructure`.
 
 .Modifying the page layout for all (or a selection of) views
 If you want to modify page layout for multiple views at runtime, you can subscribe to the {entity-module-javadoc}/com/foreach/across/modules/entity/views/processors/support/EntityPageStructureRenderedEvent.html[`EntityPageStructureRenderedEvent`].
