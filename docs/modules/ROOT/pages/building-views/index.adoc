@@ -1,6 +1,7 @@
 = Building entity views
+include::{partialsdir}/_attributes.adoc[]
 
-==== How entity views work
+== How entity views work
 An `EntityView` is created by an `EntityViewFactory` based on an `EntityViewRequest`.
 A controller is still responsible for executing (usually rendering) the actual `EntityView`.
 
@@ -15,7 +16,7 @@ NOTE: You can force the view being rendered by simply providing the view name as
 
 The controller creates an `EntityViewRequest`, retrieves the `EntityViewFactory` and builds the corresponding `EntityViewContext` and `EntityViewCommand`.
 
-==== EntityViewRequest
+== EntityViewRequest
 Wraps together all the information of a specific entity view request:
 
  * the web request that is creating the view
@@ -26,7 +27,7 @@ Wraps together all the information of a specific entity view request:
 
 Please refer to the link:{entity-module-javadoc}/com/foreach/across/modules/entity/views/request/EntityViewRequest.html[`EntityViewRequest` javadoc] for a description of all available properties.
 
-==== EntityViewContext
+== EntityViewContext
 The `EntityViewContext` contains contextual information and provides access to components that should be used for building a view.
 Contextual information is for example the entity type, specific entity or entity association being viewed.
 Components are things like the `EntityLinkBuilder`, `EntityMessages` or `AllowableActions`
@@ -37,7 +38,7 @@ NOTE: `EntityViewContext` is available as a request-scoped bean but only in case
 Loading the `EntityViewContext` attributes manually  can be done by using the `EntityViewContextLoader` bean.
 You should use the `ConfigurableEntityViewContext` interface to modify a view context.
 
-==== EntityViewCommand
+== EntityViewCommand
 The `EntityViewCommand` represents the command that should be executed on the `EntityViewFactory` to create the corresponding `EntityView`.
 Most often the command represents the form of a view where the request parameters are bound to.
 
@@ -48,14 +49,14 @@ The `EntityViewCommand` will be validated for every state modifying request: web
 
 Please refer to the link:{entity-module-javadoc}/com/foreach/across/modules/entity/views/request/EntityViewCommand.html[`EntityViewCommand` javadoc] for a description of all available properties.
 
-==== EntityViewFactory
+== EntityViewFactory
 Every view is built by an `EntityViewFactory`.
 An `EntityViewRegistry` (like `EntityConfiguration` or `EntiyAssociation`) is nothing but a map of `EntityViewFactory` by view name.
 
 An `EntityViewFactory` is a stateless controller with 4 controller methods that are expected to be called in a specific order.
 Please refer to the link:{entity-module-javadoc}/com/foreach/across/modules/entity/views/EntityViewFactory.html[javadoc] for an overview of the different controller methods and their purpose.
 
-===== DispatchingEntityViewFactory and EntityViewProcessor
+=== DispatchingEntityViewFactory and EntityViewProcessor
 EntityModule has only a single implementation of `EntityViewFactory` in the form of the `DefaultEntityViewFactory`.
 The `DefaultEntityViewFactory`:
 
@@ -78,7 +79,7 @@ Please refer to the link:{entity-module-javadoc}/com/foreach/across/modules/enti
 The appendix also provides a <<appendix-view-processors,list of all available general purpose processors>>.
 
 [[transaction-support]]
-===== Transaction support
+=== Transaction support
 The `DefaultEntityViewFactory` uses a `TransactionalEntityViewProcessorRegistry` and enables transactions on all state modifying HTTP methods: *POST*, *PUT*, *PATCH* or *DELETE*.
 If a transaction manager bean name is available on the `EntityConfiguration`, transactions will be enabled by default for all form views: create, update, delete and custom form views.
 This means that all calls in state modifying `doControl()` methods of all `EntityViewProcessor` instances will happen in a single transaction.
@@ -88,7 +89,7 @@ The transaction manager bean name is registered as an attribute `EntityAttribute
 .Manually enabling transactions on a view
 You can enable transactions manually on the `EntityViewFactoryBuilder` by specifying either the `PlatformTransactionManager` to use, the name of the transaction manager bean or a `TransactionTemplate` if you need more fine-grained control.
 
-==== Model attributes
+== Model attributes
 The `GenericEntityViewController` exposes the following model attributes to the Spring MVC view:
 
 [cols="1,2",opts=header]
@@ -108,7 +109,7 @@ The `GenericEntityViewController` exposes the following model attributes to the 
 
 |===
 
-==== Default view types
+== Default view types
 EntityModule supports 3 view types by default.
 
 When defining a new view (see the next section) it will be one of these types.

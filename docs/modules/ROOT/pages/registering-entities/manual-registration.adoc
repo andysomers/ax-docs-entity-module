@@ -1,12 +1,11 @@
-
 = Creating an EntityConfiguration manually
 
-==== Attributes to configure
+== Attributes to configure
 
 Some attributes are mandatory, others are optional but will often impact how much functionality is available out of the box.
 You can configure any attribute you like, see the section on <<automatic-attributes,automatic registration>> for a list of common attributes provided by other registrars.
 
-==== EntityQueryExecutor
+== EntityQueryExecutor
 
 In order for generated views to work automatically, an `EntityConfiguration` should have an `EntityQueryExecutor` attribute.
 The `EntityQueryExecutor` is a generic interface that supports the simple `EntityQuery` abstraction for fetching entities from the backing repository.

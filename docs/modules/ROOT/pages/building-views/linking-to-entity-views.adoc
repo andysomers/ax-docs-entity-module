@@ -12,19 +12,19 @@ Every view has a base URL path, see the chapter <<default-views,default views>> 
 |View name |Path
 
 |`listView`
-|`@adminWeb:/entities/{entityName}`
+|`@adminWeb:/entities/\{entityName}`
 
 |`view`
-|`@adminWeb:/entities/{entityName}/{id}`
+|`@adminWeb:/entities/\{entityName}/\{id}`
 
 |`createView`
-|`@adminWeb:/entities/{entityName}/create`
+|`@adminWeb:/entities/\{entityName}/create`
 
 |`updateView`
-|`@adminWeb:/entities/{entityName}/{id}/update`
+|`@adminWeb:/entities/\{entityName}/\{id}/update`
 
 |`deleteView`
-|`@adminWeb:/entities/{entityName}/{id}/delete`
+|`@adminWeb:/entities/\{entityName}/\{id}/delete`
 |===
 
 NOTE: Not all paths work in all situations.
@@ -41,19 +41,19 @@ An `EMBEDDED` association has a path structure nested below the source entity pa
 |View name |Path
 
 |`listView`
-|`@adminWeb:/entities/{entityName}/{id}/associations/{associationName}`
+|`@adminWeb:/entities/\{entityName}/\{id}/associations/\{associationName}`
 
 |`view`
-|`@adminWeb:/entities/{entityName}/{id}/associations/{associationName}/{associationId}`
+|`@adminWeb:/entities/\{entityName}/\{id}/associations/\{associationName}/\{associationId}`
 
 |`createView`
-|`@adminWeb:/entities/{entityName}/{id}/associations/{associationName}/create`
+|`@adminWeb:/entities/\{entityName}/\{id}/associations/\{associationName}/create`
 
 |`updateView`
-|`@adminWeb:/entities/{entityName}/{id}/associations/{associationName}/{assocationId}/update`
+|`@adminWeb:/entities/\{entityName}/\{id}/associations/\{associationName}/\{assocationId}/update`
 
 |`deleteView`
-|`@adminWeb:/entities/{entityName}/{id}/associations/{associationName}/{assocationId}/delete`
+|`@adminWeb:/entities/\{entityName}/\{id}/associations/\{associationName}/\{assocationId}/delete`
 |===
 
 .Custom view
@@ -66,8 +66,8 @@ The base type of view being rendered (eg. list view, form view) depends solely o
 Suppose you created a custom update form view with name `myCustomView`.
 The following paths would render the exact same view:
 
-* `@adminWeb:/entities/{entityName}/{id}?view=myCustomView`
-* `@adminWeb:/entities/{entityName}/{id}/update?view=myCustomView`
+* `@adminWeb:/entities/\{entityName}/\{id}?view=myCustomView`
+* `@adminWeb:/entities/\{entityName}/\{id}/update?view=myCustomView`
 
 == Building view links
 An `EntityViewLinks` component is available to generate links to entity views from anywhere in your code.

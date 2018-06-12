@@ -1,10 +1,1 @@
-:page-partial:
-= Appendix
-:sectnums:
-:chapter-number: 0
-
-include::attributes-overview.adoc[]
-include::message-codes.adoc[]
-include::default-entityviewprocessors.adoc[]
-
-:!sectnums:
+= Services and components

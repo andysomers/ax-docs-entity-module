@@ -1,6 +1,6 @@
 = Entity property controls
 
-=== Configuring property view types
+== Configuring property view types
 You can configure a property using the `EntityPropertyDescriptorBuilder`.
 This builder also contains some methods to influence the `ViewElement` that should be built for that property for a given mode.
 

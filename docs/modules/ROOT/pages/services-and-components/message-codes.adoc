@@ -1,6 +1,4 @@
-:page-partial:
-[[appendix-message-codes]]
-## Message codes
+= Message codes
 
 Labels are resolved using a message code hierarchy.
 Simply define one or more message sources specifying the properties you want.
@@ -107,7 +105,7 @@ Example: _EntityModule.entities.actions.save_, _UserModule.entities.group.action
 | Title of the page.
 Supports <<message-code-parameters,message code parameters>>.
 
-Example: _UserModule.entities.user.pageTitle.update=Updating {1}: {2}_
+Example: _UserModule.entities.user.pageTitle.update=Updating  \{1}: \{2}_
 
 | *EntityPrefix*.pageTitle.*pageName*.subText
 | Additional text that should be added as sub text (small) to the page header.
@@ -165,8 +163,7 @@ Example: _UserModule.entities.user.delete.confirmation_
 
 > _Entity_ codes are camel cased, eg. `CarBrand` would become *carBrand*
 
-[discrete]
-=== EntityPrefix
+== EntityPrefix
 Every code requested results in several codes being tried with a number of prefixes:
 The following prefixes are tried in oder:
 
@@ -184,23 +181,21 @@ Example lookup of property "name" on the default list view for entity "user":
 2. MyModule.entities.user.properties.name
 3. MyModule.entities.views[listView].properties.name
 4. MyModule.entities.properties.name
-3. EntityModule.entities.views[listView].properties.name
-4. EntityModule.entities.properties.name
+5. EntityModule.entities.views[listView].properties.name
+6. EntityModule.entities.properties.name
 
 **TIP**: To get a better insight in the message codes generated, use the entity browser in the developer tools.
 
-[discrete]
 [[message-code-parameters]]
-=== Message code parameters
+== Message code parameters
 Some message codes support parameters, if so, the following could be available:
 
-* {0}: entity name
-* {1}: entity name inline
-* {2}: label of the entity being modified (if known)
+* \{0}: entity name
+* \{1}: entity name inline
+* \{2}: label of the entity being modified (if known)
 
-[discrete]
 [[customizing-message-code-prefix]]
-=== Customizing message code prefixes
+== Customizing message code prefixes
 The default message code prefix is `MODULE_NAME.entities`.
 It's possible to configure the entity message codes that should be used for a specific module through configuration properties:
 
@@ -213,12 +208,10 @@ entityModule:
 
 You can specify multiple prefixes if you want, just realize this will have a big impact on the number of message codes tried.
 
-[discrete]
-=== Debugging message code lookups
+== Debugging message code lookups
 You can trace the message codes being resolved by setting the logger named *com.foreach.across.modules.entity.support.EntityMessageCodeResolver* to _TRACE_ level.
 
-[discrete]
-=== Default message codes
+== Default message codes
 The following is a copy of **EntityModule.properties** which contains the default message codes for EntityModule.
 
 ```

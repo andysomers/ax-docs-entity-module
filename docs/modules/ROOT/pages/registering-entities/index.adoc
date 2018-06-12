@@ -4,11 +4,11 @@
 // customize the registration process
 // registering associations
 
-=== Automatic registration of entity types
+== Automatic registration of entity types
 
-==== Spring Data repositories
+=== Spring Data repositories
 
-===== JPA repositories
+==== JPA repositories
 DOCUMENTATION TODO:
 
  * Embedded ID
@@ -16,7 +16,7 @@ DOCUMENTATION TODO:
  * add json serializer
 
 [[automatic-attributes]]
-===== Automatic attribute registration
+==== Automatic attribute registration
 See the appendix for an <<appendix-entity-configuration-attributes,overview of commonly registered attributes>>.
 
 

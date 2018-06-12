@@ -1,23 +1,21 @@
-:page-partial:
 [[customizing-generated-entity-views]]
 = Customizing entity views
-:sectnums:
-:chapter-number: 0
+include::{partialsdir}/_attributes.adoc[]
 
 The following section gives an overview of common customizations for generated entity views.
 
 [[view-builder-initializer]]
-=== Customizing the EntityViewFactoryBuilderInitializer
+== Customizing the EntityViewFactoryBuilderInitializer
 //DOCUMENTATION TODO: customize view builder initializer
 
-=== Changing entity names, property names or other labels
+== Changing entity names, property names or other labels
 All entity names, property names and labels can be customized using message sources.
 For an explanation of the different message codes used, see <<appendix-message-codes,the relevant appendix>>.
 
 See also the section on <<configuring-form-text,configuring form controls text>> for common customizations.
 
 [[customize-page-layout]]
-=== Setting page title or changing page layout
+== Setting page title or changing page layout
 Setting a page title can be done by adding the corresponding message code.
 All default views automatically add a page title (optionally with sub text) if the corresponding message code resolves a non-empty string.
 
@@ -35,27 +33,27 @@ This event is published during the `postRender()` phase and gives you context of
 
 `SingleEntityPageStructureViewProcessor` and `ListPageStructureViewProcessor` are the <<appendix-view-processors,view processors>> responsible for building the basic page structure and publishing the event.
 
-=== Specifying a custom template
+== Specifying a custom template
 
 Every default view uses a specific (Thymeleaf) template that renders the `ViewElement` list created by the view.
 If you want control over the rendering through a separate template you can specify a different template using the `template()` method on the `EntityViewFactoryBuilder`.
 
-=== EntityViewProcessor
+== EntityViewProcessor
 
 Modifying a default view can be done by registering an `EntityViewProcessor` for that view.
 This API allows you to modify the `ViewElement` collection that should be generated.
 This is a useful hook to add for example custom form elements that you wish to add and process.
 If can also be used to reorganize the layout of the form from backend code using the `ContainerViewElementUtils`.
 
-=== Using a custom EntityViewFactory
+== Using a custom EntityViewFactory
 
 Full control can be done by registering a custom `EntityViewFactory` implementation.
 
-=== Selecting properties
+== Selecting properties
 `EntityPropertySelector`, incremental builders, keep current, select all, select all without default filter, exclude
 
 [[configuring-views]]
-==== Configuring views
+== Configuring views
 Existing views can be modified or new ones registered using an `EntityViewFactoryBuilder` or `EntityListViewFactoryBuilder`.
 You usually don't create these manually but get a builder for the corresponding view from the configuration or association builder.
 

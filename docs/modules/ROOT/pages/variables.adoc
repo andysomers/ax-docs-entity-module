@@ -1,6 +1,0 @@
-:entity-module-version: 3.0.1.RELEASE
-:url-EntityModule: https://across.foreach.be/modules/entitymodule
-:entity-module-javadoc: https://across-docs.foreach.be/across-standard-modules/EntityModule/3.0.1.RELEASE/javadoc
-:entity-module-javadoc-processors: http://across-docs.foreach.be/across-standard-modules/EntityModule/3.0.1.RELEASE/javadoc/com/foreach/across/modules/entity/views/processors
-:url-AdminWebModule: https://across-docs.foreach.be/across-standard-modules/AdminWebModule/2.1.1.RELEASE/reference
-:url-BootstrapUiModule: https://across-docs.foreach.be/across-standard-modules/BootstrapUiModule/2.0.0-SNAPSHOT/reference

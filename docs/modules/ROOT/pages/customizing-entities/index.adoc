@@ -1,10 +1,7 @@
-:page-partial:
 = Configuring entity types
-:sectnums:
-:chapter-number: 0
 
 [[builders]]
-=== Using builders
+== Using builders
 Entities are usually automatically added to the `EntityRegistry` through the use of one or more `EntityRegistrar` beans.
 The registrars will apply a default configuration, usually consisting of all properties, associations and views.
 
@@ -29,7 +26,7 @@ public class UserEntitiesConfiguration implements EntityConfigurer
 }
 ----
 
-=== Configuring properties
+== Configuring properties
 Properties for an entity can be configured through the builders as well.
 New properties can be added or the default properties can modified.
 How properties are configured determines how they will be rendered on the generated forms.
@@ -46,7 +43,7 @@ In case a property is writable but not readable, the property can only be includ
 WARNING: The `hidden` state has no correlation with a hidden form control.
 Setting a property to be rendered as a hidden form control can only be done through configuring the right `ViewElement` information for that property.
 
-==== Configuring a label
+=== Configuring a label
 An entity with a corresponding `EntityConfiguration` always has a label, this is a textual representation of the entity in for example lists.
 This could be the *name* or the * title* property for example.
 By default the label corresponds to a custom generated property *#label* that defaults to calling `toString()` on the entity.
@@ -76,7 +73,7 @@ If you do not wish to use the *#label* property at all as default entity label, 
 NOTE: As *#label* is a generated property, sorting is not enabled by default.
 If you configure the label using an existing property, the sortable attribute will be copied as well and sorting on label will be possible.
 
-=== Customizing entity validation
+== Customizing entity validation
 
 By default annotation validation is performed on all entities.
 Customizing validation can be done by simply specifying a `Validator` bean that supports the specific entity type.

@@ -1,6 +1,5 @@
-:page-partial:
-[[appendix-view-processors]]
-== Default EntityViewProcessors
+= Default EntityViewProcessors
+include::{partialsdir}/_attributes.adoc[]
 
 This chapter lists the general purpose `EntityViewProcessor` classes that are provided by EntityModule.
 The <<entity-views,default entity views>> are all built on these processors.

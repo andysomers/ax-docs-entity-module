@@ -58,7 +58,6 @@ class DummyEntityConfiguration implements EntityConfigurer {
  }
 ----
 
-<1> A new form view is registered with the name upload which uses our created but not yet implemented view processor.
 <1> A new property `files` is registered which we will use to represent the file upload.
 <2> By configuring a display name we modify the label that will be rendered.
 <3> A `ViewElementBuilder` is provided to override how the control should be rendered.

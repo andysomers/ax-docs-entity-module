@@ -1,4 +1,3 @@
-:page-partial:
 = Customizing entity associations
 
 The `EntityModule` attempts to automatically detect related entities and creates associations mainly to facilitate UI generation.
@@ -22,7 +21,7 @@ public void configure( EntitiesConfigurationBuilder configuration ) {
 }
 ----
 
-=== Association type
+== Association type
 Every `EntityAssociation` is of a specific type, configured through the *associationType* property.
 The association type determines how the associated values can be managed through the user interface.
 
@@ -52,13 +51,13 @@ Usually the related entity type does not have any menu item, nor sub tabs (the l
 
 By default an association is of type `LINKED`.
 
-=== ParentDeleteMode
+== ParentDeleteMode
 An `EntityAssociation` has a *parentDeleteMode* property that determines how associated items will influence the ability to delete in the user interface.
 The default value is `SUPPRESS` but can be set through the `EntitiesConfigurationBuilder`.
 
 For more information see the <<delete-view,delete view chapter>>.
 
-=== Association naming and location
+== Association naming and location
 Associations are added to the `EntityConfiguration` for which it makes most sense to manage them from a UI perspective.
 The association naming however is done according to the entity class and property names.
 
@@ -68,7 +67,7 @@ Example:
 * entity `User` has a one to many with `Group` on property *groups*
 * association *user.groups* will be created on the entity configuration of `Group`
 
-=== Customize associated entity creation
+== Customize associated entity creation
 You can customize the creation of an associated entity in the form views, by setting a custom `EntityFactory`.
 This is especially useful for manually creating associations.
 
