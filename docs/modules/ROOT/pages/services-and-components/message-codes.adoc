@@ -10,6 +10,28 @@ Unless custom `EntityMessageCodeResolver` instances are being used, message code
 |Message code
 |Description
 
+|Auditable.createdDate
+|Output format for the `createdDate` property of an `Auditable`.
+
+Example: _{0,date,medium} {0,time,short}_
+
+|Auditable.lastModifiedDate
+|Output format for the `lastModifiedDate` property of an `Auditable`.
+
+Example: _{0,date,medium} {0,time,short}_
+
+|Auditable.created
+|Output format for the generated `created` property of an `Auditable`.
+This combines both the `createDate` with the `createdBy` value.
+
+Example: _{0,date,medium} {0,time,short} by {1}_
+
+|Auditable.lastModified
+|Output format for the generated `lastModified` property of an `Auditable`.
+This combines both the `lastModifiedDate` with the `lastModifiedBy` value.
+
+Example: _{0,date,medium} {0,time,short} by {1}_
+
 |EntityModule.adminMenu
 |Title of the root menu group for entity management.
 
@@ -254,9 +276,9 @@ EntityModule.entities.delete.deleteDisabled=Not possible to delete this {1}.
 EntityModule.entities.delete.associations=The following items are associated with this {1}:
 EntityModule.entities.delete.associatedResults={2} {1}
 
-
+#
 # Default validation messages
-
+#
 EntityModule.entities.validation.Size=Length should be between {2} and {1} characters.
 EntityModule.entities.validation.Length=Length should be between {2} and {1} characters.
 EntityModule.entities.validation.NotBlank=A value is required.
@@ -270,4 +292,17 @@ EntityModule.entities.validation.alreadyExists=Another entity already has this v
 
 # Default control messages
 BootstrapUiModule.SelectFormElementConfiguration.noneSelectedText=
+
+# EntityQueryFilter messages
+EntityModule.entities.entityQueryFilter.linkToAdvancedMode=Advanced
+EntityModule.entities.entityQueryFilter.linkToBasicMode=Basic
+EntityModule.entities.entityQueryFilter.eqlPlaceholder=
+EntityModule.entities.entityQueryFilter.searchButton=
+EntityModule.entities.entityQueryFilter.eqlDescription=
+EntityModule.entities.entityQueryFilter.linkToBasicMode[impossibleTooltip]=Query can not be converted to basic mode.
+
+Auditable.createdDate={0,date,medium} {0,time,short}
+Auditable.lastModifiedDate={0,date,medium} {0,time,short}
+Auditable.created={0,date,medium} {0,time,short} by {1}
+Auditable.lastModified={0,date,medium} {0,time,short} by {1}
 ```

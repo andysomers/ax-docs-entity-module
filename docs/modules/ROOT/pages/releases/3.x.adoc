@@ -1,10 +1,19 @@
 = 3.x.x release notes
 
 [#3-1-0]
-== 3.1.0-SNAPSHOT
+== 3.1.0.RELEASE
 
 * if an `EntityAssociation` has a custom `EntityFactory` attribute, that factory will be used for both new instance and DTO creation
 ** previously it was only used for new instance creation
+* EntityModule now uses `evo-inflector` to auto-generate plural forms, this should yield better results in English
+* the `String` formats of auditable properties can now be customized using global xref:services-and-components/message-codes.adoc[message codes]:
+** `Auditable.createdDate`
+** `Auditable.created`
+** `Auditable.lastModifiedDate`
+** `Auditable.lastModified`
+* several minor issues with EQL filtering have been fixed
+* `EntityQuery` condition translation is now done recursively as long as the result is modified
+* a `CollectionEntityQueryExecutor` implementation has been added that can be used to query a collection of objects if there is an `EntityPropertyRegistry` which provides the property metadata of the collection members
 
 [#3-0-1]
 == 3.0.1.RELEASE
