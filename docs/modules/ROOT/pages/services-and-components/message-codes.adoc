@@ -24,13 +24,13 @@ Example: _{0,date,medium} {0,time,short}_
 |Output format for the generated `created` property of an `Auditable`.
 This combines both the `createDate` with the `createdBy` value.
 
-Example: _{0,date,medium} {0,time,short} by {1}_
+Example: _{0,date,medium} {0,time,short} by \{1}_
 
 |Auditable.lastModified
 |Output format for the generated `lastModified` property of an `Auditable`.
 This combines both the `lastModifiedDate` with the `lastModifiedBy` value.
 
-Example: _{0,date,medium} {0,time,short} by {1}_
+Example: _{0,date,medium} {0,time,short} by \{1}_
 
 |EntityModule.adminMenu
 |Title of the root menu group for entity management.
