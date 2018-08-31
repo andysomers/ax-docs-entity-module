@@ -1,9 +1,11 @@
 = Creating a custom control
 
-On this page, you will learn:
+On this page, you will learn how to create a custom control for rendering properties of a specific object type.
+We'll be doing this in the following steps:
 
-* [*] how to create a custom `ViewElementBuilder` for a given type
-* [*] how to render the type using the custom builder
+1. Creating a custom ViewElementBuilder that can be specified on a property.
+2. Using the custom ViewElementBuilder when a specific viewElementType is specified.
+3. Automatically using a specific viewElementType for properties of a specific object type.
 
 == Creating a custom ViewElementBuilder
 

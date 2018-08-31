@@ -2,7 +2,7 @@
 
 On this page, you will learn:
 
-* [*] How to register an attribute to all objects of a specific type.
+* [*] How to register an attribute to all property descriptors of a specific type.
 
 == AbstractEntityPropertyDescriptorEnhancer
 
