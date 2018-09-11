@@ -34,14 +34,7 @@ NOTE: Default allowable actions are specified on each configuration which confir
 
 			             @Override
 			             public <V> AllowableActions getAllowableActions( EntityConfiguration<V> entityConfiguration, V entity ) { # <3>
-				             IdBasedEntity item = (IdBasedEntity) entity;
-				             AllowableActionSet allowableActions = new AllowableActionSet(); # <4>
-				             if ( Math.floorMod( item.getId(), 2 ) == 0 ) {
-				                allowableActions.add( AllowableAction.UPDATE );
-					            allowableActions.add( AllowableAction.DELETE );
-				             }
-				             allowableActions.add( AllowableAction.READ );
-				             return allowableActions;
+				             return new AllowableActionSet( AllowableAction.READ.getId(), AllowableAction.UPDATE.getId() ); # <4>
 			             }
 		             } )
 ----
@@ -50,7 +43,7 @@ NOTE: Default allowable actions are specified on each configuration which confir
 `FixedEntityAllowableActionsBuilder.DEFAULT_ALLOWABLE_ACTIONS` always acknowledges that the requested action is present.
 <3> Configuring the instance actions.
 <4> The actions are configured based on a custom implementation.
-In this case each instance has the action `AllowableAction.READ`, but only instances with an even id can be modified or deleted.
+In this case each instance has the `AllowableAction.READ` and `AllowableAction.UPDATE` action.
 
 .Example allowable actions based on roles
 [source,java,indent=0]
@@ -63,7 +56,7 @@ In this case each instance has the action `AllowableAction.READ`, but only insta
 			             @Override
 			             public AllowableActions getAllowableActions( EntityConfiguration<?> entityConfiguration ) {
 			                 AllowableActionSet allowableActions = new AllowableActionSet();
-			                 if( currentSecurityPrincipalProxy.hasAuthority( "ROLE_ADMIN" ){
+			                 if( currentSecurityPrincipalProxy.hasAuthority( "ROLE_ADMIN" ){ # <1>
 			                    allowableActions.add( AllowableAction.CREATE );
 			                 }
 			                 allowableActions.add( AllowableAction.READ );
@@ -73,7 +66,7 @@ In this case each instance has the action `AllowableAction.READ`, but only insta
 			             @Override
 			             public <V> AllowableActions getAllowableActions( EntityConfiguration<V> entityConfiguration, V entity ) {
 			                AllowableActionSet allowableActions = new AllowableActionSet();
-			             	if( currentSecurityPrincipalProxy.hasAuthority( "ROLE_ADMIN" ) ) {
+			             	if( currentSecurityPrincipalProxy.hasAuthority( "ROLE_ADMIN" ) ) { # <2>
 			             	    allowableActions.add( AllowableAction.UPDATE );
 			             	    allowableActions.add( AllowableAction.DELETE );
 			             	}
@@ -82,6 +75,8 @@ In this case each instance has the action `AllowableAction.READ`, but only insta
 			             }
 		             } )
 ----
+<1> Only administrators can create new books.
+<2> Only administrators can modify or delete books.
 
 == Allowable action for a view.
 
