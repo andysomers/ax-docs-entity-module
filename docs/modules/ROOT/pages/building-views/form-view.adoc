@@ -200,20 +200,58 @@ Via the `BuildEntityDeleteViewEvent`, the page can also be customized depending 
 NOTE: The EntityModule simply calls the delete method of the `EntityModel`, usually a direct call to a repository `delete()`.
 You will have to take care yourself of complex delete scenarios - like deleting the associations - by either modifying the `EntityModel` or using another mechanism like the `EntityInterceptor`.
 
-==== creating an additional form view
-//TODO
+==== Creating an additional form view
+
+To create an additional formView, simply register a new form view to the `EntityConfiguration` of that type.
+
+.Example creation of an additional form view
+[source,java,indent=0]
+----
+@Override
+public void configure( EntitiesConfigurationBuilder entities ){
+    entities.withType( Book.class )
+    		.formView( "custom", fvb -> fvb.showProperties( "name" ) ); # <1>
+}
+----
+<1> Register a custom form view with the name *custom*.
+
+To simplify the creation of new form views that are also immediately accessible through the navigation bar, a few helper classes have been added.
+These provide shorthand methods to add common features to the form view and then accept further configuration.
+
+[source,java,indent=0]
+----
+		configuration.withType( Book.class )
+		             .formView( "custom", EntityViewCustomizers.basicSettings()
+		                                                       .adminMenu( "custom" ) # <1>
+		                                                       .titleMessageCode( "pageTitle.custom" ) # <2>
+		                                                       .andThen( EntityViewCustomizers.formSettings()
+		                                                                                      .addFormButtons( true ) ) # <3>
+		                                                       .andThen( fvb -> fvb.showProperties( "name" ) ) ); # <4>
+----
+<1> Provide a form view with the name *custom* which should also provide a navigation item with path *custom*.
+<2> A specific message code should be used when resolving the page view
+<3> Default form settings can be configured, which makes it easy to add extensions to the form.
+In this case, we're opting to add form buttons (save / cancel) to the form.
+<4> This form should only render the name of the book.
 
 [[configuring-form-text]]
 ==== Configuring form controls text
-A form view usually renders properties in either `ViewElementMode.FORM_WRITE` or `ViewElementMode.FORM_READ`, depending on the fact if a property can be edited or not.
-By default, a property like this would be rendered as a form group (`FormGroupElement` that is usually a combination of the label and the control for the property) or a <<fieldset-properties,fieldset>> (`FieldsetFormElement`).
 
-In `FORM_READ` (readonly) mode, the default form renders only the label of a property.
-You can customize the label value by setting the corresponding message code, for example: `UserModule.entities.user.properties.username=Name of the user`.
+Usually a property is rendered in either in a xref:bootstrap-ui-module::form-controls/form-group.adoc[form group], which is a combination of a label and a control, or a xref:property-controls/fieldset.adoc[fieldset].
+By default, a property like this would be rendered as a form group (`FormGroupElement` which is usually a combination of the label and the control for the property) or a xref:property-controls/fieldset.adoc[fieldset] (`FieldsetFormElement`).
+
+Depending on the `ViewElementMode` that the property is rendered in, various text messages can be modified.
+
+===== Read mode
+
+In `FORM_READ` (readonly) mode, the default form renders only the label and the value of a property.
+You can customize the label by configuring the corresponding xref:services-and-components/message-codes.adoc[message code], for example: `UserModule.entities.user.properties.username=Name of the user`.
+
+===== Write mode
 
 In `FORM_WRITE` mode several other message codes will be resolved as well, and if they return values, additional content will be shown on the form.
 
-.Description text
+Description text::
 A description provides additional context for the property being shown.
 It is rendered above the control of a form group, or above the content of a fieldset.
 
@@ -222,7 +260,7 @@ It is rendered above the control of a form group, or above the content of a fiel
 UserModule.entities.user.properties.username[description]=The username must be unique.
 ----
 
-.Help text
+Help text::
 Help text is rendered below the control of a form group, or below the content of a fieldset.
 It usually provides a (less important) hint for updating the value.
 
@@ -231,7 +269,7 @@ It usually provides a (less important) hint for updating the value.
 UserModule.entities.user.properties.username[help]=Try to pick something you will remember.
 ----
 
-.Tooltip text
+Tooltip text::
 Tooltip text is added as a separate icon (question mark) that will only show the actual tooltip when you hover over it with the mouse cursor.
 Tooltips are often used as an alternative for help text.
 The difference is that help text is always visible, whereas to see the tooltip a used will need to take an extra action.
@@ -248,7 +286,7 @@ By default all message codes allow HTML entities, so you can add additional link
 NOTE: In case of a form group you can also manually set the different text components from code.
 Values set from code will take precedence and will never be replaced by the values resolved from message codes.
 
-A more detailed explanation of how message codes are resolved and which codes are possible can be found in <<message-codes,the appendix>>.
+A more detailed explanation of how message codes are resolved and which codes are possible can be found in the xref:services-and-components/message-codes.adoc[message codes overview].
 
 
 
